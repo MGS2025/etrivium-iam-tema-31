@@ -759,6 +759,8 @@ Existen dos variantes que conviene diferenciar: el **multicloud por reparto**, e
 
 ## 5. Cloud Computing en la Administración Pública
 
+> **Material complementario.** El enunciado oficial de este tema no nombra este apartado. Se mantiene porque sitúa la materia en el Ayuntamiento y en la normativa que le aplica, pero lo exigible es lo que enumera el título del tema.
+
 Esta sección es la que convierte el tema en un tema **de oposición a la Administración** y no en un tema genérico de tecnología. La idea que la vertebra es sencilla de enunciar y difícil de aplicar: **una Administración puede externalizar la infraestructura, pero no puede externalizar la responsabilidad**. Todo lo que sigue —ENS, protección de datos, soberanía, estrategia— son maneras de hacer operativa esa frase.
 
 ### 5.1. Marco regulatorio y de seguridad

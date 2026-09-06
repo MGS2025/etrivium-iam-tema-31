@@ -53,7 +53,7 @@
    4.3.1. Integración, interoperabilidad y portabilidad de cargas
    4.4. Nubes comunitarias y estrategia Multicloud
 
-5. **Cloud Computing en la Administración Pública**
+5. **Cloud Computing en la Administración Pública (material complementario)**
    5.1. Marco regulatorio y de seguridad
    5.1.1. Esquema Nacional de Seguridad y cumplimiento Cloud
    5.1.2. Protección de datos de carácter personal y garantía de soberanía
