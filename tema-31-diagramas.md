@@ -282,7 +282,7 @@
   <path d="M175 48 L272 200 L78 200 Z" fill="none" stroke="#0055a0" stroke-width="2"/>
   <circle cx="175" cy="48" r="24" fill="#0055a0"/><text x="175" y="45" text-anchor="middle" class="t7">C</text><text x="175" y="57" text-anchor="middle" class="s7">consist.</text>
   <circle cx="78" cy="200" r="24" fill="#2d8659"/><text x="78" y="197" text-anchor="middle" class="t7">A</text><text x="78" y="209" text-anchor="middle" class="s7">disponib.</text>
-  <circle cx="272" cy="200" r="24" fill="#d13c3c"/><text x="272" y="197" text-anchor="middle" class="t7">P</text><text x="272" y="209" text-anchor="middle" class="s7">particiones</text>
+  <circle cx="272" cy="200" r="24" fill="#d13c3c"/><text x="272" y="197" text-anchor="middle" class="t7">P</text><text x="272" y="209" text-anchor="middle" class="s7" style="font-size:7.5px">particiones</text>
   <rect x="40" y="236" width="270" height="20" rx="4" fill="#fdecec"/><text x="175" y="250" text-anchor="middle" class="d7">P no es opcional: las particiones ocurren</text>
   <rect x="340" y="44" width="320" height="22" rx="4" fill="#d13c3c"/><text x="500" y="59" text-anchor="middle" class="t7">LECTURA INCORRECTA</text>
   <rect x="340" y="70" width="320" height="24" rx="4" fill="#fdecec"/><text x="500" y="86" text-anchor="middle" class="d7">«Elige dos de las tres»</text>
@@ -462,7 +462,7 @@
   <text x="350" y="208" text-anchor="middle" class="d11">tiempo (un año, con una campaña en el mes 7)</text>
   <path d="M72 224 h22" stroke="#0055a0" stroke-width="2.5"/><text x="100" y="228" class="d11">demanda real</text>
   <path d="M212 224 h22" stroke="#888" stroke-width="2" stroke-dasharray="7 4"/><text x="240" y="228" class="d11">capacidad fija</text>
-  <text x="348" y="228" class="d11">Una capacidad elástica se pegaría a la línea azul: sin zona azul ni zona rosa</text>
+  <text x="332" y="228" class="d11">Una capacidad elástica se pegaría a la línea azul: sin zona azul ni zona rosa</text>
   <rect x="20" y="238" width="205" height="50" rx="5" fill="#888"/><text x="122" y="256" text-anchor="middle" class="t11">ESCALABILIDAD</text><text x="122" y="270" text-anchor="middle" class="s11">capacidad de crecer;</text><text x="122" y="282" text-anchor="middle" class="s11">puede ser manual y lenta</text>
   <rect x="238" y="238" width="205" height="50" rx="5" fill="#2d8659"/><text x="340" y="256" text-anchor="middle" class="t11">ELASTICIDAD</text><text x="340" y="270" text-anchor="middle" class="s11">crecer Y DECRECER,</text><text x="340" y="282" text-anchor="middle" class="s11">automático y rápido</text>
   <rect x="456" y="238" width="204" height="50" rx="5" fill="#0055a0"/><text x="558" y="256" text-anchor="middle" class="t11">VERTICAL / HORIZONTAL</text><text x="558" y="270" text-anchor="middle" class="s11">más potencia a una máquina</text><text x="558" y="282" text-anchor="middle" class="s11">frente a más máquinas</text>
@@ -625,7 +625,7 @@
 **Propósito**: Reunir en un solo esquema las cuatro capas normativas que condicionan la contratación de servicios en la nube por una Administración española, con sus preceptos concretos.
 
 ```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 373" role="img" aria-label="Cuatro capas normativas que condicionan el uso de la nube en la Administración española: seguridad con el Esquema Nacional de Seguridad del Real Decreto 311/2022 y las guías del Centro Criptológico Nacional, protección de datos con el RGPD y la sentencia Schrems II, mercado con el Reglamento de Datos y la libre circulación de datos no personales, y estrategia con la Estrategia de nube híbrida y las leyes 39 y 40 de 2015">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 379" role="img" aria-label="Cuatro capas normativas que condicionan el uso de la nube en la Administración española: seguridad con el Esquema Nacional de Seguridad del Real Decreto 311/2022 y las guías del Centro Criptológico Nacional, protección de datos con el RGPD y la sentencia Schrems II, mercado con el Reglamento de Datos y la libre circulación de datos no personales, y estrategia con la Estrategia de nube híbrida y las leyes 39 y 40 de 2015">
   <style>.t16{font:700 10.5px system-ui,sans-serif;fill:#fff}.s16{font:8.5px system-ui,sans-serif;fill:#fff}.d16{font:9px system-ui,sans-serif;fill:#333}.h16{font:700 13px system-ui,sans-serif;fill:#0055a0}.k16{font:700 9.5px system-ui,sans-serif;fill:#0055a0}.f16{font:8px system-ui,sans-serif;fill:#777}</style>
   <text x="340" y="20" text-anchor="middle" class="h16">El marco normativo de la nube pública en la Administración</text>
   <rect x="20" y="32" width="130" height="70" rx="5" fill="#0055a0"/><text x="85" y="60" text-anchor="middle" class="t16">SEGURIDAD</text><text x="85" y="76" text-anchor="middle" class="s16">ENS · RD 311/2022</text><text x="85" y="89" text-anchor="middle" class="s16">CCN-STIC 823 y 105</text>
@@ -640,12 +640,12 @@
   <rect x="158" y="188" width="502" height="20" rx="3" fill="#fdf3e2"/><text x="168" y="202" class="d16">Reglamento (UE) 2023/2854, cap. VI (arts. 23-31): derecho de cambio de proveedor</text>
   <rect x="158" y="211" width="502" height="20" rx="3" fill="#f5f5f5"/><text x="168" y="225" class="d16">Art. 29: desde el 12 de enero de 2027, PROHIBIDAS las tarifas de cambio</text>
   <rect x="158" y="234" width="502" height="24" rx="3" fill="#fdf3e2"/><text x="168" y="250" class="d16">Reglamento (UE) 2018/1807: libre circulación de datos no personales en la Unión</text>
-  <rect x="20" y="266" width="130" height="62" rx="5" fill="#888"/><text x="85" y="290" text-anchor="middle" class="t16">ESTRATEGIA</text><text x="85" y="306" text-anchor="middle" class="s16">Estrategia cloud AAPP</text><text x="85" y="319" text-anchor="middle" class="s16">Leyes 39 y 40/2015</text>
+  <rect x="20" y="266" width="130" height="66" rx="5" fill="#888"/><text x="85" y="290" text-anchor="middle" class="t16">ESTRATEGIA</text><text x="85" y="306" text-anchor="middle" class="s16">Estrategia cloud AAPP</text><text x="85" y="319" text-anchor="middle" class="s16">Leyes 39 y 40/2015</text>
   <rect x="158" y="266" width="502" height="20" rx="3" fill="#e8e8e8"/><text x="168" y="280" class="d16">Principio de nube híbrida primero · 7 pilares y 19 iniciativas · NubeSARA</text>
   <rect x="158" y="289" width="502" height="20" rx="3" fill="#f5f5f5"/><text x="168" y="303" class="d16">Soberanía: categoría ALTA solo con empresas de jurisdicción exclusivamente comunitaria</text>
-  <rect x="158" y="312" width="502" height="16" rx="3" fill="#e8e8e8"/><text x="168" y="324" class="d16">Ley 40/2015: interoperabilidad, seguridad y reutilización (arts. 156-158)</text>
-  <rect x="20" y="334" width="640" height="16" rx="4" fill="#0055a0"/><text x="340" y="346" text-anchor="middle" class="s16">Primero se categoriza y se analiza el dato; después se elige la tecnología</text>
-  <text x="340" y="364" text-anchor="middle" class="f16">[Fuente: ENS, RGPD, DATAACT, ESTRATEGIA-CLOUD]</text>
+  <rect x="158" y="312" width="502" height="20" rx="3" fill="#e8e8e8"/><text x="168" y="326" class="d16">Ley 40/2015: interoperabilidad, seguridad y reutilización (arts. 156-158)</text>
+  <rect x="20" y="338" width="640" height="20" rx="4" fill="#0055a0"/><text x="340" y="352" text-anchor="middle" class="s16">Primero se categoriza y se analiza el dato; después se elige la tecnología</text>
+  <text x="340" y="372" text-anchor="middle" class="f16">[Fuente: ENS, RGPD, DATAACT, ESTRATEGIA-CLOUD]</text>
 </svg>
 ```
 
