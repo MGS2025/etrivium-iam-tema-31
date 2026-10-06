@@ -16,17 +16,17 @@
 
 Este tema incluye cuatro tipos de **cajas callout** para facilitar el estudio:
 
-> **[DATO CLAVE EXAMEN]** Información de alta densidad memorística, con alta probabilidad de aparecer en el test oficial.
+> **[DATO CLAVE]** Información de alta densidad memorística.
 
 > **[EJERCICIO RESUELTO]** Problema + solución paso a paso (clasificación de un servicio, cálculo de un dimensionamiento o de un coste, elección de un modelo de despliegue).
 
-> **[EJEMPLO AYTO MADRID]** Aplicación real de la teoría al entorno municipal (sede electrónica, padrón, callejero, portal de datos abiertos, tramitación de expedientes).
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Aplicación real de la teoría al entorno municipal (sede electrónica, padrón, callejero, portal de datos abiertos, tramitación de expedientes).
 
-> **[REFERENCIA CRUZADA]** Enlace conceptual a otros temas del temario oficial.
+> **[RELACIÓN CON OTROS TEMAS]** Enlace conceptual a otros temas del temario oficial.
 
-Este tema tiene una peculiaridad que conviene entender antes de empezar, porque explica su estructura: **la nube no es una tecnología, sino un modelo económico y de consumo montado encima de tecnologías anteriores**. Por eso el enunciado oficial empieza por los *paradigmas de computación distribuida* —que son lo que hay debajo— y solo después llega a los *servicios en cloud*. Un opositor que estudie únicamente las siglas IaaS, PaaS y SaaS aprobará las preguntas fáciles y fallará las buenas, porque las preguntas buenas se hacen precisamente sobre lo que la nube hereda de la computación distribuida: latencia, particiones de red, consistencia, acoplamiento y fallos parciales.
+Este tema tiene una peculiaridad que conviene entender antes de empezar, porque explica su estructura: **la nube no es una tecnología, sino un modelo económico y de consumo montado encima de tecnologías anteriores**. Por eso el enunciado oficial empieza por los *paradigmas de computación distribuida* —que son lo que hay debajo— y solo después llega a los *servicios en cloud*. Estudiar únicamente las siglas IaaS, PaaS y SaaS deja fuera lo esencial, que es precisamente lo que la nube hereda de la computación distribuida: latencia, particiones de red, consistencia, acoplamiento y fallos parciales.
 
-Hay una segunda advertencia. Este es, junto al Tema 24, el tema **más sensible a la obsolescencia** de toda la serie técnica: los nombres de producto y los catálogos de servicios de los proveedores cambian cada pocos meses. Por eso este tema se apoya deliberadamente en **definiciones normalizadas y estables** —NIST SP 800-145, ISO/IEC 17788, ENS— y trata los productos concretos como meros ejemplos. **Lo que se pregunta en un examen es la definición, no la marca.** Las tres cifras que hay que llevar grabadas son las del NIST: **5 características esenciales, 3 modelos de servicio y 4 modelos de despliegue** [NIST145].
+Hay una segunda advertencia. Este es, junto al Tema 24, el tema **más sensible a la obsolescencia** de toda la serie técnica: los nombres de producto y los catálogos de servicios de los proveedores cambian cada pocos meses. Por eso este tema se apoya deliberadamente en **definiciones normalizadas y estables** —NIST SP 800-145, ISO/IEC 17788, ENS— y trata los productos concretos como meros ejemplos. **Lo que importa es la definición, no la marca.** Las tres cifras que hay que llevar grabadas son las del NIST: **5 características esenciales, 3 modelos de servicio y 4 modelos de despliegue** [NIST145].
 
 Las fuentes se citan con etiquetas breves tipo `[NIST145]` o `[ENS]`; el registro completo está en `tema-31-fuentes.md`.
 
@@ -40,14 +40,14 @@ Las fuentes se citan con etiquetas breves tipo `[NIST145]` o `[ENS]`; el registr
 
 #### 1.1.1. Definición, objetivos y transparencias
 
-La definición clásica y más citada es la de Tanenbaum: **un sistema distribuido es un conjunto de ordenadores independientes que se presenta a sus usuarios como un único sistema coherente** [TANENBAUM]. La definición tiene dos mitades y ambas son igual de importantes en un examen:
+La definición clásica y más citada es la de Tanenbaum: **un sistema distribuido es un conjunto de ordenadores independientes que se presenta a sus usuarios como un único sistema coherente** [TANENBAUM]. La definición tiene dos mitades y ambas son igual de importantes:
 
 - **«Ordenadores independientes»**: cada nodo tiene su propio procesador, su propia memoria y su propio reloj. **No hay memoria compartida y no hay un reloj global**. La única forma de que dos nodos se coordinen es **enviarse mensajes**, y los mensajes tardan, se pierden, se duplican y llegan desordenados.
 - **«Un único sistema coherente»**: el usuario no debe percibir que hay muchas máquinas. Esa ocultación es el trabajo del *middleware*, la capa de software que se sitúa entre el sistema operativo de cada nodo y las aplicaciones.
 
-> **[DATO CLAVE EXAMEN]** Las dos ausencias que definen un sistema distribuido y explican toda su dificultad: **no hay memoria compartida** y **no hay reloj global**. De ahí se derivan el paso de mensajes como único mecanismo de coordinación, la imposibilidad de saber con certeza si un nodo ha caído o solo va lento, y la necesidad de relojes lógicos para ordenar eventos [TANENBAUM] [LAMPORT].
+> **[DATO CLAVE]** Las dos ausencias que definen un sistema distribuido y explican toda su dificultad: **no hay memoria compartida** y **no hay reloj global**. De ahí se derivan el paso de mensajes como único mecanismo de coordinación, la imposibilidad de saber con certeza si un nodo ha caído o solo va lento, y la necesidad de relojes lógicos para ordenar eventos [TANENBAUM] [LAMPORT].
 
-**Distribuido, paralelo y centralizado no son sinónimos.** La distinción se pregunta con frecuencia:
+**Distribuido, paralelo y centralizado no son sinónimos.** La distinción es la siguiente:
 
 | Sistema | Memoria | Reloj | Fallo de un componente | Objetivo principal |
 |---|---|---|---|---|
@@ -78,15 +78,15 @@ La **transparencia** merece detalle porque tiene un listado cerrado y memorizabl
 | **De fallo** | La **avería y recuperación** de un componente | Un reintento automático que el usuario no percibe |
 | **De persistencia** | Si el recurso está en **memoria o en disco** | Un objeto que se recupera de disco sin que la aplicación lo sepa |
 
-> **[DATO CLAVE EXAMEN]** Las dos transparencias que más se confunden: **migración** (el recurso se mueve, pero no mientras lo estás usando) frente a **reubicación** (se mueve **durante** el uso, sin interrumpirlo). Y **replicación** (hay varias copias) frente a **concurrencia** (hay varios usuarios sobre la misma copia) [RMODP].
+> **[DATO CLAVE]** Las dos transparencias que más se confunden: **migración** (el recurso se mueve, pero no mientras lo estás usando) frente a **reubicación** (se mueve **durante** el uso, sin interrumpirlo). Y **replicación** (hay varias copias) frente a **concurrencia** (hay varios usuarios sobre la misma copia) [RMODP].
 
 La transparencia total, sin embargo, **no es un objetivo deseable en sí mismo**. Ocultar por completo la distribución lleva a escribir software que trata una llamada remota como si fuera local, y esa es exactamente la trampa que describen las ocho falacias del epígrafe siguiente. El criterio profesional es **ocultar lo que se puede ocultar sin mentir**, y hacer explícito lo demás: los tiempos de espera, los reintentos y los fallos.
 
-> **[REFERENCIA CRUZADA]** La **arquitectura de ordenadores** y los componentes internos de un equipo se tratan en el **Tema 11**; los **sistemas operativos** y sus elementos constitutivos, en el **Tema 14**. Aquí se da por conocido qué es un proceso, un hilo y una llamada al sistema, y se estudia qué ocurre cuando esos procesos están en **máquinas distintas**.
+> **[RELACIÓN CON OTROS TEMAS]** La **arquitectura de ordenadores** y los componentes internos de un equipo se tratan en el **Tema 11**; los **sistemas operativos** y sus elementos constitutivos, en el **Tema 14**. Aquí se da por conocido qué es un proceso, un hilo y una llamada al sistema, y se estudia qué ocurre cuando esos procesos están en **máquinas distintas**.
 
 #### 1.1.2. Las ocho falacias de la computación distribuida
 
-Enunciadas en Sun Microsystems por **L. Peter Deutsch** (las siete primeras) y completadas por **James Gosling** (la octava), las falacias son los supuestos que un diseñador da por buenos sin darse cuenta y que después arruinan el sistema en producción [DEUTSCH]. Son un contenido de examen excelente porque forman una lista cerrada de ocho elementos y porque explican, una a una, decisiones concretas de arquitectura en la nube.
+Enunciadas en Sun Microsystems por **L. Peter Deutsch** (las siete primeras) y completadas por **James Gosling** (la octava), las falacias son los supuestos que un diseñador da por buenos sin darse cuenta y que después arruinan el sistema en producción [DEUTSCH]. Son un contenido de estudio excelente porque forman una lista cerrada de ocho elementos y porque explican, una a una, decisiones concretas de arquitectura en la nube.
 
 | # | Falacia | Realidad | Qué obliga a hacer |
 |---|---|---|---|
@@ -99,11 +99,11 @@ Enunciadas en Sun Microsystems por **L. Peter Deutsch** (las siete primeras) y c
 | 7 | **El coste de transporte es cero** | Serializar y mover datos cuesta CPU y **dinero** | Diseño consciente del tráfico de salida y del formato |
 | 8 | **La red es homogénea** | Conviven tecnologías, versiones y proveedores distintos | Formatos e interfaces neutrales y normalizados |
 
-> **[DATO CLAVE EXAMEN]** Las ocho falacias en orden: **fiable · latencia cero · ancho de banda infinito · segura · topología estable · un solo administrador · transporte gratis · red homogénea**. La séptima, «el coste de transporte es cero», es la que se materializa hoy en las **tarifas de salida de datos** (*egress*) de los proveedores de nube pública, y por eso el Reglamento de Datos ha tenido que intervenir sobre ellas [DEUTSCH] [DATAACT].
+> **[DATO CLAVE]** Las ocho falacias en orden: **fiable · latencia cero · ancho de banda infinito · segura · topología estable · un solo administrador · transporte gratis · red homogénea**. La séptima, «el coste de transporte es cero», es la que se materializa hoy en las **tarifas de salida de datos** (*egress*) de los proveedores de nube pública, y por eso el Reglamento de Datos ha tenido que intervenir sobre ellas [DEUTSCH] [DATAACT].
 
 La segunda falacia merece un comentario aparte, porque es la que más frecuentemente se subestima. La latencia no se puede eliminar: está limitada por la velocidad de la luz en el medio. Un ida y vuelta entre Madrid y un centro de datos en la costa este de Estados Unidos ronda los **80-100 milisegundos** en el mejor de los casos, y ninguna optimización de software lo va a reducir. Si una pantalla de tramitación hace cien llamadas remotas encadenadas, esa pantalla tardará **varios segundos** por pura aritmética, sin que haya nada «lento» en ninguno de los dos extremos. De ahí que la elección de **región** de un servicio en la nube sea una decisión de rendimiento, no solo jurídica.
 
-> **[EJEMPLO AYTO MADRID]** El portal de cita previa del caso de referencia consulta el padrón para verificar el empadronamiento. Si esa consulta se hace **una vez por solicitud**, el sistema funciona. Si se hace **una vez por cada campo del formulario** para «validar en vivo», se multiplica el tráfico contra un sistema crítico y compartido y el día de la avalancha se cae el padrón, no el portal. La falacia 2 y la falacia 3 explican por qué: cada validación parece gratis vista de una en una.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** El portal de cita previa del caso de referencia consulta el padrón para verificar el empadronamiento. Si esa consulta se hace **una vez por solicitud**, el sistema funciona. Si se hace **una vez por cada campo del formulario** para «validar en vivo», se multiplica el tráfico contra un sistema crítico y compartido y el día de la avalancha se cae el padrón, no el portal. La falacia 2 y la falacia 3 explican por qué: cada validación parece gratis vista de una en una.
 
 ### 1.2. Arquitecturas distribuidas
 
@@ -126,11 +126,11 @@ La evolución del modelo se cuenta por **capas** (*tiers*), entendidas como nive
 | **3 capas** | Presentación / **servidor de aplicaciones** / **servidor de datos** | Cada capa escala y se asegura por separado; la lógica está en un solo sitio | Más elementos que operar |
 | **N capas** | 3 capas + capas de integración, servicios, caché o presentación web | Máxima flexibilidad e integración | Complejidad, latencia acumulada |
 
-> **[DATO CLAVE EXAMEN]** La regla que define una arquitectura **multicapa estricta** es que **cada capa solo se comunica con la contigua**: la presentación nunca ataca directamente a la base de datos. Si lo hace, hay tres capas dibujadas pero **dos** de verdad, y se pierden las ventajas de seguridad y de mantenimiento del modelo [TANENBAUM].
+> **[DATO CLAVE]** La regla que define una arquitectura **multicapa estricta** es que **cada capa solo se comunica con la contigua**: la presentación nunca ataca directamente a la base de datos. Si lo hace, hay tres capas dibujadas pero **dos** de verdad, y se pierden las ventajas de seguridad y de mantenimiento del modelo [TANENBAUM].
 
 La arquitectura de tres capas sigue siendo, con enorme diferencia, **la más habitual en la Administración**, y es el punto de partida de casi todas las migraciones a la nube: la capa de presentación se convierte en un servicio web escalable, la de negocio en un conjunto de servicios de aplicación y la de datos en una base de datos gestionada.
 
-> **[REFERENCIA CRUZADA]** La **arquitectura de sistemas cliente/servidor y multicapa** y las **arquitecturas de servicios web** son el objeto específico del **Tema 22**, y el desarrollo web *front-end* y en servidor, el del **Tema 23**. Aquí se recorren solo como **paradigmas de distribución**, para poder contrastarlos con los microservicios y con el modelo de nube.
+> **[RELACIÓN CON OTROS TEMAS]** La **arquitectura de sistemas cliente/servidor y multicapa** y las **arquitecturas de servicios web** son el objeto específico del **Tema 22**, y el desarrollo web *front-end* y en servidor, el del **Tema 23**. Aquí se recorren solo como **paradigmas de distribución**, para poder contrastarlos con los microservicios y con el modelo de nube.
 
 #### 1.2.2. Arquitecturas orientadas a servicios y microservicios
 
@@ -156,11 +156,11 @@ Los **microservicios** son la reacción a ese problema. Una aplicación se const
 | Reutilización | Objetivo explícito y central | Secundaria frente a la **autonomía** |
 | Gobierno | Centralizado | Descentralizado |
 
-> **[DATO CLAVE EXAMEN]** El corte exacto entre SOA y microservicios no está en el tamaño, sino en **dónde vive la lógica de integración** y en **quién es dueño de los datos**. SOA: bus inteligente y datos frecuentemente compartidos. Microservicios: canal tonto, servicios inteligentes y **una base de datos por servicio** [FOWLER].
+> **[DATO CLAVE]** El corte exacto entre SOA y microservicios no está en el tamaño, sino en **dónde vive la lógica de integración** y en **quién es dueño de los datos**. SOA: bus inteligente y datos frecuentemente compartidos. Microservicios: canal tonto, servicios inteligentes y **una base de datos por servicio** [FOWLER].
 
 Los microservicios **no son gratis**. Trasladan complejidad del código a la **operación**: hay que descubrir servicios, equilibrar carga, versionar contratos, correlacionar trazas entre decenas de procesos y mantener la consistencia de datos **sin transacciones distribuidas** (patrón *saga*, compensaciones, eventos). La recomendación profesional más citada es la de **empezar por el monolito** y extraer servicios cuando el dolor lo justifique, no antes [FOWLER]. En una Administración con equipos pequeños y contratación por lotes, un monolito bien modularizado suele ser una decisión más defendible que veinte microservicios sin equipo que los opere.
 
-> **[EJEMPLO AYTO MADRID]** En el portal de cita previa, un troceado razonable serían **tres** servicios: *validación de empadronamiento* (consulta al padrón, cacheable), *gestión de solicitudes* (alta, consulta y modificación) y *notificación* (correo y avisos). Tres, no quince: el criterio no es «cuanto más pequeño mejor», sino **qué partes tienen ritmos de cambio y de carga distintos**. La validación se dispara el día de la apertura; la notificación se dispara al día siguiente, cuando se resuelven las solicitudes.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** En el portal de cita previa, un troceado razonable serían **tres** servicios: *validación de empadronamiento* (consulta al padrón, cacheable), *gestión de solicitudes* (alta, consulta y modificación) y *notificación* (correo y avisos). Tres, no quince: el criterio no es «cuanto más pequeño mejor», sino **qué partes tienen ritmos de cambio y de carga distintos**. La validación se dispara el día de la apertura; la notificación se dispara al día siguiente, cuando se resuelven las solicitudes.
 
 #### 1.2.3. Arquitecturas P2P y orientadas a eventos
 
@@ -174,7 +174,7 @@ Se distinguen tres variantes por cómo resuelven la localización:
 | **P2P puro descentralizado** | **Inundación** de consultas entre vecinos | Gnutella |
 | **P2P estructurado** | **Tabla hash distribuida (DHT)**: cada clave tiene un nodo responsable determinable por cálculo | Chord, Kademlia, IPFS [DHT] |
 
-> **[DATO CLAVE EXAMEN]** La **tabla hash distribuida (DHT)** es el mecanismo que permite localizar un recurso en una red P2P **sin índice central y sin inundar la red**: la clave del recurso determina matemáticamente qué nodo es responsable de él, y la búsqueda converge en un número de saltos del orden del logaritmo del número de nodos [DHT].
+> **[DATO CLAVE]** La **tabla hash distribuida (DHT)** es el mecanismo que permite localizar un recurso en una red P2P **sin índice central y sin inundar la red**: la clave del recurso determina matemáticamente qué nodo es responsable de él, y la búsqueda converge en un número de saltos del orden del logaritmo del número de nodos [DHT].
 
 El modelo P2P no es una curiosidad histórica: reaparece dentro de la propia nube. Muchos sistemas de almacenamiento distribuido, bases de datos NoSQL de anillo y **cadenas de bloques** son P2P estructurado por dentro, aunque se consuman como un servicio centralizado por fuera.
 
@@ -189,9 +189,9 @@ Sus elementos son cuatro: el **productor** del evento, el **evento** en sí (un 
 | Tolerancia a fallos: si el consumidor cae, el evento espera | Depuración y pruebas complejas |
 | Permite reprocesar el histórico de eventos | Riesgo de eventos duplicados: exige **idempotencia** |
 
-> **[DATO CLAVE EXAMEN]** Distinción de examen entre **orden** y **evento**: un **comando** («registra esta solicitud») va dirigido a **un** destinatario concreto y espera que se ejecute; un **evento** («solicitud registrada») es un hecho **ya ocurrido**, va dirigido a **nadie en particular** y no espera nada. Confundirlos es el error de diseño más común en EDA.
+> **[DATO CLAVE]** Distinción entre **orden** y **evento**: un **comando** («registra esta solicitud») va dirigido a **un** destinatario concreto y espera que se ejecute; un **evento** («solicitud registrada») es un hecho **ya ocurrido**, va dirigido a **nadie en particular** y no espera nada. Confundirlos es el error de diseño más común en EDA.
 
-> **[EJEMPLO AYTO MADRID]** En el caso de referencia, «solicitud registrada» es un evento perfecto: al publicarlo, reaccionan de forma independiente el servicio de **notificación** (acuse de recibo a la persona solicitante), el de **estadística** (contador del cuadro de mando) y el de **archivo** (conservación de la evidencia). Si mañana Intervención pide un cuarto consumidor para su seguimiento, se añade **sin tocar** el servicio de solicitudes.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** En el caso de referencia, «solicitud registrada» es un evento perfecto: al publicarlo, reaccionan de forma independiente el servicio de **notificación** (acuse de recibo a la persona solicitante), el de **estadística** (contador del cuadro de mando) y el de **archivo** (conservación de la evidencia). Si mañana Intervención pide un cuarto consumidor para su seguimiento, se añade **sin tocar** el servicio de solicitudes.
 
 ### 1.3. Modelos de comunicación distribuida
 
@@ -211,9 +211,9 @@ Los mecanismos, de más bajo a más alto nivel de abstracción:
 
 **4. Servicios REST.** No es un protocolo, sino un **estilo arquitectónico** definido por Fielding con seis restricciones: cliente-servidor, **sin estado** (*stateless*), cacheable, sistema en capas, interfaz uniforme y, opcionalmente, código bajo demanda [FIELDING]. En la práctica se materializa en HTTP + JSON, con los verbos `GET`, `POST`, `PUT`, `PATCH` y `DELETE` sobre recursos identificados por URI [RFC7231].
 
-> **[DATO CLAVE EXAMEN]** Un error clásico de RPC es creer que **una llamada remota es igual que una local**. No lo es: puede fallar **por la red** —no solo por la lógica—, puede **tardar** miles de veces más y puede **ejecutarse dos veces** si el llamante reintenta tras un tiempo de espera. Por eso las operaciones remotas deben ser **idempotentes** siempre que sea posible: repetir la operación debe producir el mismo resultado que ejecutarla una sola vez [DEUTSCH].
+> **[DATO CLAVE]** Un error clásico de RPC es creer que **una llamada remota es igual que una local**. No lo es: puede fallar **por la red** —no solo por la lógica—, puede **tardar** miles de veces más y puede **ejecutarse dos veces** si el llamante reintenta tras un tiempo de espera. Por eso las operaciones remotas deben ser **idempotentes** siempre que sea posible: repetir la operación debe producir el mismo resultado que ejecutarla una sola vez [DEUTSCH].
 
-Sobre la idempotencia conviene retener la correspondencia con HTTP, que se pregunta: **`GET`, `PUT` y `DELETE` son idempotentes**; **`POST` no lo es** (dos `POST` crean dos recursos). De ahí la práctica de enviar una **clave de idempotencia** en las peticiones de creación que pueden reintentarse [RFC7231].
+Sobre la idempotencia conviene retener la correspondencia con HTTP: **`GET`, `PUT` y `DELETE` son idempotentes**; **`POST` no lo es** (dos `POST` crean dos recursos). De ahí la práctica de enviar una **clave de idempotencia** en las peticiones de creación que pueden reintentarse [RFC7231].
 
 #### 1.3.2. Comunicación asíncrona: colas, publicación-suscripción y flujos
 
@@ -229,13 +229,13 @@ Los tres patrones fundamentales:
 
 Los protocolos normalizados de referencia son **AMQP 1.0** (OASIS, = ISO/IEC 19464), orientado a mensajería empresarial con colas, intercambios y encaminamiento [AMQP], y **MQTT 5.0** (OASIS, = ISO/IEC 20922), muy ligero y de publicación-suscripción con temas jerárquicos, dominante en IoT y en el borde [MQTT]. Como plataformas, las colas clásicas se implementan con productos de tipo RabbitMQ o ActiveMQ, y los flujos con plataformas de tipo Kafka [KAFKA].
 
-Las **garantías de entrega** son un dato de examen recurrente:
+Las **garantías de entrega** son un dato clave:
 
 - **Como mucho una vez** (*at most once*): rápido, pero **puede perder** mensajes. Válido para telemetría.
 - **Al menos una vez** (*at least once*): no pierde, pero **puede duplicar**. Es el más usado y **obliga al consumidor a ser idempotente**.
 - **Exactamente una vez** (*exactly once*): deseable y caro; en sistemas distribuidos solo se consigue de forma acotada, combinando desduplicación y transaccionalidad del intermediario.
 
-> **[DATO CLAVE EXAMEN]** La garantía práctica dominante es **«al menos una vez»**, y su consecuencia obligatoria es que **el consumidor debe ser idempotente**: procesar dos veces el mismo mensaje no puede producir dos altas, dos cobros ni dos notificaciones. El mecanismo habitual es una **clave de desduplicación** almacenada por el consumidor.
+> **[DATO CLAVE]** La garantía práctica dominante es **«al menos una vez»**, y su consecuencia obligatoria es que **el consumidor debe ser idempotente**: procesar dos veces el mismo mensaje no puede producir dos altas, dos cobros ni dos notificaciones. El mecanismo habitual es una **clave de desduplicación** almacenada por el consumidor.
 
 Otros dos conceptos operativos que aparecen en supuestos prácticos: la **cola de mensajes fallidos** (*dead letter queue*), donde se aparta el mensaje que ha agotado sus reintentos para que no bloquee la cola ni se pierda; y la **contrapresión** (*backpressure*), el mecanismo por el que un consumidor saturado hace que el sistema reduzca el ritmo de admisión en lugar de desbordarse.
 
@@ -253,7 +253,7 @@ El **teorema CAP**, conjeturado por Eric Brewer y demostrado por Gilbert y Lynch
 - **A — Disponibilidad** (*availability*): toda petición recibe una respuesta no errónea, aunque pueda no ser la más reciente.
 - **P — Tolerancia a particiones** (*partition tolerance*): el sistema sigue funcionando aunque se pierdan mensajes entre grupos de nodos.
 
-> **[DATO CLAVE EXAMEN]** El enunciado popular «elige dos de las tres» es **incorrecto**. En un sistema distribuido real **las particiones ocurren**, así que **P no es opcional**: el teorema dice que, **cuando hay partición**, hay que elegir entre **C** y **A**. Cuando **no** la hay, se puede tener consistencia y disponibilidad a la vez. Esta precisión es la que distingue una respuesta correcta de una respuesta de memoria [BREWER].
+> **[DATO CLAVE]** El enunciado popular «elige dos de las tres» es **incorrecto**. En un sistema distribuido real **las particiones ocurren**, así que **P no es opcional**: el teorema dice que, **cuando hay partición**, hay que elegir entre **C** y **A**. Cuando **no** la hay, se puede tener consistencia y disponibilidad a la vez. Esta precisión es la que distingue una respuesta correcta de una respuesta de memoria [BREWER].
 
 De ahí la clasificación práctica en sistemas **CP** (ante la partición, rechazan operaciones para no divergir: bases relacionales replicadas, sistemas de coordinación tipo consenso) y sistemas **AP** (ante la partición, siguen respondiendo y reconcilian después: almacenes de clave-valor de alta disponibilidad) [DYNAMO].
 
@@ -267,7 +267,7 @@ El contraste entre los dos modelos de garantías se resume así:
 | Ámbito típico | Bases de datos relacionales, operaciones económicas | NoSQL distribuido, catálogos, contenidos, analítica |
 | Escalado | Más difícil horizontalmente | Diseñado para escalar horizontalmente |
 
-> **[REFERENCIA CRUZADA]** Los **sistemas de gestión de bases de datos relacionales, orientados a objetos y NoSQL** —incluidas las propiedades ACID y la administración de bases distribuidas— son el objeto del **Tema 15**, y el diseño lógico y la normalización, el del **Tema 17**. Aquí interesa solo el compromiso entre consistencia y disponibilidad **como problema de distribución**.
+> **[RELACIÓN CON OTROS TEMAS]** Los **sistemas de gestión de bases de datos relacionales, orientados a objetos y NoSQL** —incluidas las propiedades ACID y la administración de bases distribuidas— son el objeto del **Tema 15**, y el diseño lógico y la normalización, el del **Tema 17**. Aquí interesa solo el compromiso entre consistencia y disponibilidad **como problema de distribución**.
 
 La **coordinación** entre nodos exige, además, resolver dos problemas que no existen en un sistema centralizado:
 
@@ -275,7 +275,7 @@ La **coordinación** entre nodos exige, además, resolver dos problemas que no e
 
 **El acuerdo.** Que un conjunto de nodos decida lo mismo pese a fallos y retrasos es el problema del **consenso**, resuelto en la práctica por algoritmos como **Paxos** y **Raft**, que exigen **mayoría (quórum)** de nodos vivos. De ahí que los servicios de coordinación se desplieguen en número **impar** (3, 5, 7): con cinco nodos se tolera la caída de dos y aún hay mayoría. El resultado teórico de fondo —**FLP**— establece que en un sistema **asíncrono** el consenso no puede garantizarse de forma determinista si puede fallar aunque sea un nodo; en la práctica se resuelve introduciendo **tiempos de espera**, es decir, renunciando a la asincronía pura.
 
-> **[DATO CLAVE EXAMEN]** Los algoritmos de consenso (**Paxos**, **Raft**) necesitan **quórum de mayoría**: con `N` nodos toleran `(N-1)/2` caídas. Por eso los despliegues son **impares**: con 3 nodos se tolera 1 fallo; con 5, dos. Añadir un cuarto nodo a un grupo de tres **no aumenta** la tolerancia y sí el coste.
+> **[DATO CLAVE]** Los algoritmos de consenso (**Paxos**, **Raft**) necesitan **quórum de mayoría**: con `N` nodos toleran `(N-1)/2` caídas. Por eso los despliegues son **impares**: con 3 nodos se tolera 1 fallo; con 5, dos. Añadir un cuarto nodo a un grupo de tres **no aumenta** la tolerancia y sí el coste.
 
 Un último concepto, imprescindible para entender la disponibilidad ofrecida por los proveedores de nube: el **dominio de fallo**. Se agrupa la infraestructura en zonas que **no comparten** alimentación, refrigeración ni red, de forma que un incidente afecte a una sola. En la nube pública esto se materializa en **zonas de disponibilidad** (centros de datos independientes y próximos, unidos por red de baja latencia) dentro de una **región** (área geográfica). Repartir réplicas entre zonas protege frente a la caída de un edificio; repartirlas entre regiones protege frente a una catástrofe territorial, a costa de latencia y, con frecuencia, de restricciones jurídicas sobre la ubicación de los datos [CSP].
 ---
@@ -304,13 +304,13 @@ Las **cinco características esenciales**, con su nombre en inglés porque así 
 
 **5. Servicio medido** (*measured service*). Los sistemas de nube controlan y optimizan el uso de recursos **midiéndolo** a un nivel de abstracción apropiado para el tipo de servicio (almacenamiento, procesamiento, ancho de banda, cuentas activas). El uso puede **monitorizarse, controlarse y reportarse**, aportando transparencia tanto al proveedor como al consumidor. Es la característica que hace posible el pago por uso y, en el sector público, la que permite imputar el gasto a la unidad que lo genera.
 
-> **[DATO CLAVE EXAMEN]** Las cinco características son **acumulativas y necesarias**: si un servicio no las cumple **todas**, no es nube según el NIST. El error típico consiste en llamar «nube privada» a un centro de datos virtualizado que **no tiene autoservicio ni medición**: eso es **virtualización**, no nube. La virtualización es un **habilitador**, no un sinónimo [NIST145].
+> **[DATO CLAVE]** Las cinco características son **acumulativas y necesarias**: si un servicio no las cumple **todas**, no es nube según el NIST. El error típico consiste en llamar «nube privada» a un centro de datos virtualizado que **no tiene autoservicio ni medición**: eso es **virtualización**, no nube. La virtualización es un **habilitador**, no un sinónimo [NIST145].
 
 Una regla mnemotécnica útil en español, tomando la inicial de cada una: **A-A-A-E-M** — **A**utoservicio, **A**cceso a la red, **A**grupación, **E**lasticidad, **M**edición.
 
 #### 2.1.2. El vocabulario normalizado ISO/IEC 17788 y los actores del modelo
 
-La norma internacional equivalente es **ISO/IEC 17788:2014**, publicada conjuntamente con la UIT como **Recomendación ITU-T Y.3500**. Coincide en lo esencial con el NIST, pero introduce dos diferencias que se preguntan [ISO17788]:
+La norma internacional equivalente es **ISO/IEC 17788:2014**, publicada conjuntamente con la UIT como **Recomendación ITU-T Y.3500**. Coincide en lo esencial con el NIST, pero introduce dos diferencias [ISO17788]:
 
 1. Añade una **sexta característica clave**: la **multitenencia** (*multi-tenancy*), entendida como la asignación de recursos físicos o virtuales de forma que varios inquilinos y sus cómputos y datos permanezcan **aislados e inaccesibles** entre sí. El NIST la considera implícita dentro de la agrupación de recursos; ISO prefiere hacerla explícita.
 2. Sustituye la rígida terna IaaS/PaaS/SaaS por dos conceptos: los **tipos de capacidad en la nube** (de **infraestructura**, de **plataforma** y de **aplicación**) y las **categorías de servicio**, entre las que enumera **CompaaS** (cómputo), **CaaS** (comunicaciones), **DSaaS** (almacenamiento de datos), **IaaS**, **NaaS** (red), **PaaS** y **SaaS**.
@@ -327,11 +327,11 @@ Por su parte, el NIST define en la **SP 500-292** una **arquitectura de referenc
 | **Portador** (*cloud carrier*) | Proporciona **conectividad y transporte** entre proveedor y consumidor | El operador de telecomunicaciones |
 | **Auditor** (*cloud auditor*) | Evaluación **independiente** de servicios, operaciones, rendimiento y seguridad | La entidad de certificación de conformidad con el ENS |
 
-> **[DATO CLAVE EXAMEN]** Los **cinco actores del NIST**: consumidor, proveedor, **intermediario** (*broker*), **portador** (*carrier*) y **auditor**. Los dos que se olvidan siempre son el portador —que es quien pone la red— y el auditor. Nótese que el **intermediario** puede ser de tres tipos: de **intermediación** (añade valor a un servicio), de **agregación** (combina varios) y de **arbitraje** (elige dinámicamente el mejor proveedor) [NIST292].
+> **[DATO CLAVE]** Los **cinco actores del NIST**: consumidor, proveedor, **intermediario** (*broker*), **portador** (*carrier*) y **auditor**. Los dos que se olvidan siempre son el portador —que es quien pone la red— y el auditor. Nótese que el **intermediario** puede ser de tres tipos: de **intermediación** (añade valor a un servicio), de **agregación** (combina varios) y de **arbitraje** (elige dinámicamente el mejor proveedor) [NIST292].
 
 ### 2.2. Evolución desde la computación distribuida
 
-La nube no aparece de la nada: es el resultado de una línea de evolución de sesenta años que conviene poder narrar, porque los enunciados de examen suelen pedir precisamente la **relación** entre paradigmas.
+La nube no aparece de la nada: es el resultado de una línea de evolución de sesenta años que conviene poder narrar, porque lo que importa es precisamente la **relación** entre paradigmas.
 
 | Etapa | Idea central | Qué aporta a la nube |
 |---|---|---|
@@ -343,7 +343,7 @@ La nube no aparece de la nada: es el resultado de una línea de evolución de se
 | **Nube** (desde 2006) | Autoservicio + elasticidad + medición sobre recursos agrupados | El modelo completo |
 | **Borde y niebla** (*edge*, *fog*) | Acercar el cómputo al punto donde se generan los datos | Reduce **latencia** y tráfico; complementa la nube, no la sustituye |
 
-Las diferencias entre **malla** y **nube** son un clásico:
+Las diferencias entre **malla** y **nube**:
 
 | Criterio | Computación en malla (*grid*) | Computación en la nube |
 |---|---|---|
@@ -353,7 +353,7 @@ Las diferencias entre **malla** y **nube** son un clásico:
 | Heterogeneidad | Alta y asumida | Homogeneizada por virtualización |
 | Aprovisionamiento | Por lotes, planificado (*batch*) | **Bajo demanda, en minutos** |
 
-> **[DATO CLAVE EXAMEN]** La nube **no inventó** ninguna de sus piezas: el tiempo compartido aportó el pago por uso, la malla la federación, la virtualización el aprovisionamiento rápido y la web el acceso ubicuo. **Lo que la nube aporta es la combinación**, y en particular el **autoservicio automatizado** y la **medición**, que son las dos características que ninguna etapa anterior tenía simultáneamente [NIST145].
+> **[DATO CLAVE]** La nube **no inventó** ninguna de sus piezas: el tiempo compartido aportó el pago por uso, la malla la federación, la virtualización el aprovisionamiento rápido y la web el acceso ubicuo. **Lo que la nube aporta es la combinación**, y en particular el **autoservicio automatizado** y la **medición**, que son las dos características que ninguna etapa anterior tenía simultáneamente [NIST145].
 
 ### 2.3. Tecnologías habilitadoras: virtualización y orquestación
 
@@ -369,11 +369,11 @@ Sobre esa base, la nube ha ido subiendo el nivel de abstracción en tres saltos:
 | **Contenedor** | Aplicación + sus dependencias; **comparte el núcleo** del anfitrión | Segundos | Medio (espacios de nombres y *cgroups*) | Cientos |
 | **Función** (*serverless*) | Solo el **código** de la función; el entorno lo pone la plataforma | Milisegundos a segundos | Gestionado por el proveedor | Miles |
 
-> **[DATO CLAVE EXAMEN]** La diferencia esencial entre máquina virtual y contenedor: la **máquina virtual virtualiza el hardware** y lleva **su propio sistema operativo**; el **contenedor virtualiza el sistema operativo** y **comparte el núcleo** del anfitrión. De ahí que el contenedor arranque en segundos y sea mucho más denso, y que su aislamiento sea **menor** —un fallo del núcleo afecta a todos los contenedores del nodo— [OCI].
+> **[DATO CLAVE]** La diferencia esencial entre máquina virtual y contenedor: la **máquina virtual virtualiza el hardware** y lleva **su propio sistema operativo**; el **contenedor virtualiza el sistema operativo** y **comparte el núcleo** del anfitrión. De ahí que el contenedor arranque en segundos y sea mucho más denso, y que su aislamiento sea **menor** —un fallo del núcleo afecta a todos los contenedores del nodo— [OCI].
 
 La normalización es lo que hace que los contenedores sean el mecanismo de **portabilidad** entre nubes más eficaz disponible: la **Open Container Initiative** define especificaciones abiertas de **imagen**, de **ejecución** y de **distribución**, de modo que una imagen construida en un sitio se ejecuta igual en otro [OCI]. Este punto es directamente relevante para el §4.3 y para la estrategia pública de evitar la dependencia de un proveedor.
 
-> **[REFERENCIA CRUZADA]** La **virtualización de sistemas y de puestos de usuario** —hipervisores, tipos, gestión de recursos, VDI— es el objeto completo del **Tema 28**. El **almacenamiento y su virtualización**, junto con las políticas de copia de seguridad, corresponden al **Tema 26**. En este tema la virtualización se trata solo como **tecnología habilitadora** de la nube.
+> **[RELACIÓN CON OTROS TEMAS]** La **virtualización de sistemas y de puestos de usuario** —hipervisores, tipos, gestión de recursos, VDI— es el objeto completo del **Tema 28**. El **almacenamiento y su virtualización**, junto con las políticas de copia de seguridad, corresponden al **Tema 26**. En este tema la virtualización se trata solo como **tecnología habilitadora** de la nube.
 
 #### 2.3.2. Orquestación, automatización e infraestructura como código
 
@@ -396,11 +396,11 @@ La **infraestructura como código (IaC)** aplica la misma idea a toda la infraes
 - **Reversibilidad**: se puede volver a la descripción anterior.
 - **Revisión previa**: el cambio se revisa antes de aplicarse, igual que el código.
 
-> **[DATO CLAVE EXAMEN]** **Idempotencia** en infraestructura como código significa que **aplicar la misma descripción n veces deja el sistema en el mismo estado que aplicarla una vez**. Es lo que diferencia una herramienta declarativa de un guion (*script*) imperativo, que al ejecutarse dos veces puede crear dos veces el mismo recurso o fallar [TERRAFORM].
+> **[DATO CLAVE]** **Idempotencia** en infraestructura como código significa que **aplicar la misma descripción n veces deja el sistema en el mismo estado que aplicarla una vez**. Es lo que diferencia una herramienta declarativa de un guion (*script*) imperativo, que al ejecutarse dos veces puede crear dos veces el mismo recurso o fallar [TERRAFORM].
 
 ### 2.4. Ventajas y retos tecnológicos
 
-Las **ventajas** de la nube son reales, pero conviene enunciarlas con precisión y con sus condiciones, porque los enunciados de examen suelen incluir una ventaja mal formulada como distractor.
+Las **ventajas** de la nube son reales, pero conviene enunciarlas con precisión y con sus condiciones.
 
 | Ventaja | En qué consiste | Condición o matiz |
 |---|---|---|
@@ -455,7 +455,7 @@ La forma más rentable de estudiarlos es la **pila de responsabilidad**: nueve c
 | Servidores y almacenamiento | **Cliente** | Proveedor | Proveedor | Proveedor |
 | Red e instalaciones físicas | **Cliente** | Proveedor | Proveedor | Proveedor |
 
-> **[DATO CLAVE EXAMEN]** Las **dos fronteras** que hay que saber señalar sin dudar. Entre **local e IaaS** está la **virtualización**: en IaaS el proveedor pone el hipervisor y el hardware. Entre **IaaS y PaaS** está el **sistema operativo**: en IaaS **lo administra el cliente**; en PaaS, **no**. Y hay dos capas que **nunca** cambian de dueño en ningún modelo: **los datos** y **las identidades y accesos** [NIST145] [CCN823].
+> **[DATO CLAVE]** Las **dos fronteras** que hay que saber señalar sin dudar. Entre **local e IaaS** está la **virtualización**: en IaaS el proveedor pone el hipervisor y el hardware. Entre **IaaS y PaaS** está el **sistema operativo**: en IaaS **lo administra el cliente**; en PaaS, **no**. Y hay dos capas que **nunca** cambian de dueño en ningún modelo: **los datos** y **las identidades y accesos** [NIST145] [CCN823].
 
 ### 3.1. Infraestructura como Servicio (IaaS)
 
@@ -471,7 +471,7 @@ El catálogo típico de un servicio IaaS se agrupa en tres familias:
 - **Grupos de autoescalado** que crean y destruyen instancias según reglas.
 - **Servidores dedicados** (*bare metal*), sin hipervisor, para cargas con exigencias de licenciamiento o de aislamiento.
 
-**2. Almacenamiento.** Es imprescindible distinguir los tres tipos, porque es una pregunta habitual:
+**2. Almacenamiento.** Es imprescindible distinguir los tres tipos:
 
 | Tipo | Unidad | Cómo se accede | Uso típico |
 |---|---|---|---|
@@ -488,20 +488,20 @@ El **almacenamiento de objetos** es el más característico de la nube: no tiene
 - **Direcciones IP públicas**, **traducción de direcciones** para salida y **conexiones privadas** hacia la red corporativa (VPN de sitio a sitio o enlace dedicado).
 - **DNS** gestionado y **red de distribución de contenidos** (CDN).
 
-> **[REFERENCIA CRUZADA]** El **acceso remoto seguro y las VPN** se estudian en el **Tema 36**, y los **protocolos TCP/IP** en el **Tema 34**. Aquí solo interesa que una nube IaaS se conecta a la red corporativa por VPN o por enlace dedicado, y que la **segmentación** es responsabilidad del cliente.
+> **[RELACIÓN CON OTROS TEMAS]** El **acceso remoto seguro y las VPN** se estudian en el **Tema 36**, y los **protocolos TCP/IP** en el **Tema 34**. Aquí solo interesa que una nube IaaS se conecta a la red corporativa por VPN o por enlace dedicado, y que la **segmentación** es responsabilidad del cliente.
 
-> **[EJEMPLO AYTO MADRID]** La documentación que la ciudadanía adjunta a una solicitud —justificantes, escaneos, certificados— es el caso de manual de **almacenamiento de objetos**: son ficheros que se escriben una vez, se leen pocas veces, deben conservarse años y crecen sin límite previsible. Guardarlos en discos de bloques conectados a las instancias sería más caro, menos durable y obligaría a redimensionar discos continuamente.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** La documentación que la ciudadanía adjunta a una solicitud —justificantes, escaneos, certificados— es el caso de manual de **almacenamiento de objetos**: son ficheros que se escriben una vez, se leen pocas veces, deben conservarse años y crecen sin límite previsible. Guardarlos en discos de bloques conectados a las instancias sería más caro, menos durable y obligaría a redimensionar discos continuamente.
 
 #### 3.1.2. Abstracción del hardware y elasticidad
 
 Lo que IaaS abstrae es el **ciclo de vida del hardware**: la compra, la instalación en el bastidor, el cableado, la sustitución de discos, la renovación por obsolescencia y la gestión del espacio, la energía y la refrigeración. Lo que **no** abstrae es la administración del sistema operativo: parcheado, endurecimiento, cuentas, servicios, registro y copias siguen siendo del cliente.
 
-La **elasticidad** merece precisión terminológica, porque se pregunta la diferencia:
+La **elasticidad** merece precisión terminológica:
 
 - **Escalabilidad**: capacidad de un sistema de **crecer** para atender más carga. Puede ser **vertical** (*scale up*: dar más núcleos y memoria a la misma máquina; sencillo, pero con techo físico y normalmente con reinicio) u **horizontal** (*scale out*: añadir más máquinas; sin techo práctico, pero exige que la aplicación sea **apta para funcionar en varias instancias**, es decir, **sin estado en memoria local**).
 - **Elasticidad**: capacidad de **crecer y decrecer automáticamente** siguiendo la demanda, en tiempos cortos y sin intervención humana.
 
-> **[DATO CLAVE EXAMEN]** **Escalabilidad no es elasticidad.** Un sistema puede ser escalable (se le pueden añadir servidores) y **nada elástico** (hay que hacerlo a mano y tarda semanas). La elasticidad exige las **tres** cosas: automatismo, rapidez y **bidireccionalidad** —también hacia abajo—. Y la elasticidad horizontal exige que la aplicación sea **sin estado**: si la sesión del usuario vive en la memoria de una instancia concreta, no se pueden añadir ni quitar instancias sin romper sesiones [12FACTOR].
+> **[DATO CLAVE]** **Escalabilidad no es elasticidad.** Un sistema puede ser escalable (se le pueden añadir servidores) y **nada elástico** (hay que hacerlo a mano y tarda semanas). La elasticidad exige las **tres** cosas: automatismo, rapidez y **bidireccionalidad** —también hacia abajo—. Y la elasticidad horizontal exige que la aplicación sea **sin estado**: si la sesión del usuario vive en la memoria de una instancia concreta, no se pueden añadir ni quitar instancias sin romper sesiones [12FACTOR].
 
 Los modelos de **facturación** de cómputo son también materia de supuestos prácticos:
 
@@ -543,7 +543,7 @@ Las **variantes** de PaaS que conviene distinguir:
 | **iPaaS** (integración como servicio) | Flujos de integración | Sustituye al ESB tradicional |
 | **DBaaS** | Esquema y datos | Base de datos gestionada: copias y réplica incluidas |
 
-> **[DATO CLAVE EXAMEN]** **Sin servidor** (*serverless*) **no significa que no haya servidores**: significa que el cliente **no los ve, no los dimensiona y no paga por ellos cuando no se usan**. Se factura por **número de invocaciones y tiempo de ejecución**. Su contrapartida técnica es el **arranque en frío** (*cold start*): la primera invocación tras un periodo de inactividad tarda más porque hay que preparar el entorno.
+> **[DATO CLAVE]** **Sin servidor** (*serverless*) **no significa que no haya servidores**: significa que el cliente **no los ve, no los dimensiona y no paga por ellos cuando no se usan**. Se factura por **número de invocaciones y tiempo de ejecución**. Su contrapartida técnica es el **arranque en frío** (*cold start*): la primera invocación tras un periodo de inactividad tarda más porque hay que preparar el entorno.
 
 > **[EJERCICIO RESUELTO]** *De las tres piezas del portal de cita previa, ¿cuál encaja mejor en FaaS?*
 >
@@ -564,7 +564,7 @@ Los servicios de plataforma más habituales y lo que cambia al consumirlos gesti
 | **Identidad como servicio** | Operar el directorio y la federación | **El modelo de roles y permisos** |
 | **Análisis y aprendizaje automático** | Operar la infraestructura de cálculo | **Los datos, el modelo y su gobernanza** |
 
-> **[DATO CLAVE EXAMEN]** La regla que resume PaaS: **el proveedor se hace cargo del software de base; el cliente sigue siendo responsable del diseño y de los datos**. Un servicio de base de datos gestionada hace copias, pero **no impide que el cliente borre una tabla**: la recuperación ante un error del cliente sigue exigiendo que el cliente haya definido su política de retención y haya **probado la restauración** [CCN823].
+> **[DATO CLAVE]** La regla que resume PaaS: **el proveedor se hace cargo del software de base; el cliente sigue siendo responsable del diseño y de los datos**. Un servicio de base de datos gestionada hace copias, pero **no impide que el cliente borre una tabla**: la recuperación ante un error del cliente sigue exigiendo que el cliente haya definido su política de retención y haya **probado la restauración** [CCN823].
 
 El precio de PaaS es la **pérdida de flexibilidad y el riesgo de dependencia**: se depende de las versiones de lenguaje que la plataforma soporte, de sus límites de ejecución y de sus API propietarias. Cuanto más se apoya la aplicación en servicios exclusivos del proveedor, más difícil es moverla. La mitigación práctica consiste en **preferir servicios basados en tecnologías abiertas** —una base de datos relacional estándar frente a un almacén propietario, contenedores conformes con la OCI frente a formatos exclusivos— y en **aislar el acceso a esos servicios detrás de interfaces propias** dentro del código.
 
@@ -586,7 +586,7 @@ El cambio respecto del modelo tradicional de software es total:
 | Personalización | Modificación del código posible | **Configuración**, no modificación |
 | Datos | En casa | **En el proveedor** |
 
-> **[DATO CLAVE EXAMEN]** La consecuencia más importante y menos intuitiva de SaaS: **el cliente pierde el control del calendario de versiones**. El proveedor actualiza para todos a la vez; no hay opción de «quedarse en la versión anterior» mientras se valida. Por eso en el sector público los contratos SaaS deben incluir **preaviso de cambios funcionales**, **entornos de prueba** y **compromisos de compatibilidad de las integraciones**.
+> **[DATO CLAVE]** La consecuencia más importante y menos intuitiva de SaaS: **el cliente pierde el control del calendario de versiones**. El proveedor actualiza para todos a la vez; no hay opción de «quedarse en la versión anterior» mientras se valida. Por eso en el sector público los contratos SaaS deben incluir **preaviso de cambios funcionales**, **entornos de prueba** y **compromisos de compatibilidad de las integraciones**.
 
 La **personalización** es el otro punto crítico. Un SaaS bien diseñado se adapta por **configuración** (campos, flujos, roles, plantillas, idioma, marca) y por **extensión** (llamadas a API, ganchos, complementos), pero **no por modificación del código**, porque el código es común a todos los inquilinos. Cuando una Administración exige un comportamiento que el producto no contempla, las salidas son tres, y solo una es buena: **adaptar el procedimiento** al producto, **pagar un desarrollo** que el fabricante incorpore a su producto estándar, o **construir una capa propia alrededor** —cara y frágil—.
 
@@ -602,7 +602,7 @@ La **multitenencia** es lo que hace económicamente posible el SaaS: una **misma
 
 En el modelo agrupado, el aislamiento depende **enteramente del software**: basta con que una consulta olvide filtrar por el identificador de inquilino para que una organización vea datos de otra. Por eso los proveedores serios aplican el filtrado en la capa de acceso a datos o en la propia base de datos (seguridad a nivel de fila), y no confían en que cada consulta lo recuerde.
 
-> **[DATO CLAVE EXAMEN]** El **«ruido del vecino»** (*noisy neighbour*) es el riesgo característico de la multitenencia agrupada: un inquilino que consume recursos de forma desmedida degrada el servicio de los demás. Se mitiga con **cuotas, límites de tasa y aislamiento de recursos**, y se cubre contractualmente con el **acuerdo de nivel de servicio**.
+> **[DATO CLAVE]** El **«ruido del vecino»** (*noisy neighbour*) es el riesgo característico de la multitenencia agrupada: un inquilino que consume recursos de forma desmedida degrada el servicio de los demás. Se mitiga con **cuotas, límites de tasa y aislamiento de recursos**, y se cubre contractualmente con el **acuerdo de nivel de servicio**.
 
 En cuanto al **licenciamiento**, las modalidades habituales son:
 
@@ -614,7 +614,7 @@ En cuanto al **licenciamiento**, las modalidades habituales son:
 
 En contratación pública, la modalidad elegida condiciona el expediente: un contrato **por usuario nombrado** permite un presupuesto cerrado y plurianual; uno **por consumo** exige estimar el volumen y prever un mecanismo de control del gasto, además de plantear la duda de si el objeto es un contrato de servicios de tracto sucesivo con precio variable [LCSP].
 
-> **[EJEMPLO AYTO MADRID]** Una herramienta de firma electrónica en modo SaaS para 3.000 empleados municipales, de los cuales solo unos 400 firman a diario: la licencia **por usuario nombrado** obliga a pagar 3.000 aunque 2.600 firmen dos veces al año. Con **usuario concurrente** o **por firma realizada** el coste se ajusta al uso real. La elección del modelo de licencia puede mover el precio de un contrato en un factor de cinco sin cambiar ni una línea del pliego técnico.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Una herramienta de firma electrónica en modo SaaS para 3.000 empleados municipales, de los cuales solo unos 400 firman a diario: la licencia **por usuario nombrado** obliga a pagar 3.000 aunque 2.600 firmen dos veces al año. Con **usuario concurrente** o **por firma realizada** el coste se ajusta al uso real. La elección del modelo de licencia puede mover el precio de un contrato en un factor de cinco sin cambiar ni una línea del pliego técnico.
 
 ### 3.4. Otros modelos de servicio (XaaS)
 
@@ -636,7 +636,7 @@ En contratación pública, la modalidad elegida condiciona el expediente: un con
 | **BPaaS** | Proceso de negocio como servicio | Un proceso completo externalizado (nóminas, cobros) | Sobre SaaS |
 | **MLaaS / AIaaS** | Aprendizaje automático o IA como servicio | Modelos y API de inferencia | PaaS/SaaS |
 
-> **[DATO CLAVE EXAMEN]** Cuidado con la ambigüedad de dos siglas: **CaaS** puede significar *containers* o *communications*, y **DaaS** puede significar *desktop* o *data*. En un enunciado, el sentido lo fija el contexto; en una respuesta escrita, conviene **desarrollar la sigla** para no dar lugar a duda. Y recordar siempre que el NIST solo reconoce **tres** modelos de servicio: el resto son etiquetas de mercado [NIST145] [ISO17788].
+> **[DATO CLAVE]** Cuidado con la ambigüedad de dos siglas: **CaaS** puede significar *containers* o *communications*, y **DaaS** puede significar *desktop* o *data*. En un enunciado, el sentido lo fija el contexto; en una respuesta escrita, conviene **desarrollar la sigla** para no dar lugar a duda. Y recordar siempre que el NIST solo reconoce **tres** modelos de servicio: el resto son etiquetas de mercado [NIST145] [ISO17788].
 ---
 
 ## 4. Modelos de despliegue en Cloud Computing
@@ -650,7 +650,7 @@ Si los modelos de servicio responden a **«qué gestiona cada uno»**, los model
 | **Pública** | **Uso abierto al público general** | Una empresa, una entidad académica o pública, o una combinación | En las instalaciones **del proveedor** |
 | **Híbrida** | Combinación de **dos o más** de las anteriores | Cada una conserva su titularidad | Mixto |
 
-> **[DATO CLAVE EXAMEN]** Dos precisiones del NIST que se fallan constantemente. **Primera**: una nube **privada no tiene por qué estar en las instalaciones del cliente** ni ser propiedad suya; puede estar alojada y operada por un tercero. Lo que la define es que **su uso está reservado a una sola organización**. **Segunda**: en la nube **híbrida**, las infraestructuras que se combinan **siguen siendo entidades separadas y distintas**, unidas por una tecnología —normalizada o propietaria— que permite **la portabilidad de datos y de aplicaciones** entre ellas [NIST145].
+> **[DATO CLAVE]** Dos precisiones del NIST que se confunden a menudo. **Primera**: una nube **privada no tiene por qué estar en las instalaciones del cliente** ni ser propiedad suya; puede estar alojada y operada por un tercero. Lo que la define es que **su uso está reservado a una sola organización**. **Segunda**: en la nube **híbrida**, las infraestructuras que se combinan **siguen siendo entidades separadas y distintas**, unidas por una tecnología —normalizada o propietaria— que permite **la portabilidad de datos y de aplicaciones** entre ellas [NIST145].
 
 ### 4.1. Nubes públicas
 
@@ -673,7 +673,7 @@ El **modelo de responsabilidad compartida** es el concepto vertebrador de la nub
 
 Y la línea que separa ambas **se desplaza según el modelo de servicio**: en IaaS el cliente asume el sistema operativo; en PaaS deja de asumirlo; en SaaS solo le quedan datos, identidades y configuración. Lo que **nunca** cambia es lo esencial:
 
-> **[DATO CLAVE EXAMEN]** En todos los modelos y en todos los despliegues, **el cliente conserva siempre**: (1) sus **datos** y su clasificación, (2) la **gestión de identidades y accesos** y (3) la **configuración** de los servicios que contrata. Y en el plano jurídico, la Administración conserva **siempre** la condición de **responsable del tratamiento**: la responsabilidad **se puede delegar operativamente, pero no se externaliza jurídicamente** [RGPD] [CCN823].
+> **[DATO CLAVE]** En todos los modelos y en todos los despliegues, **el cliente conserva siempre**: (1) sus **datos** y su clasificación, (2) la **gestión de identidades y accesos** y (3) la **configuración** de los servicios que contrata. Y en el plano jurídico, la Administración conserva **siempre** la condición de **responsable del tratamiento**: la responsabilidad **se puede delegar operativamente, pero no se externaliza jurídicamente** [RGPD] [CCN823].
 
 Los tres errores de configuración que concentran la mayor parte de los incidentes reales en nube pública, y que conviene poder enumerar en un supuesto [NIST144]:
 
@@ -683,7 +683,7 @@ Los tres errores de configuración que concentran la mayor parte de los incident
 
 A ellos se añaden dos de operación: **ausencia de registro y monitorización** propios —confiar en que el proveedor «ya lo guarda»— y **falta de copias de seguridad verificadas** bajo control del cliente.
 
-> **[EJEMPLO AYTO MADRID]** Si el portal del caso de referencia guarda la documentación aportada por la ciudadanía en un almacén de objetos y esa política de acceso se deja en «lectura pública», el resultado es una **brecha de datos personales** notificable a la Agencia Española de Protección de Datos en **72 horas** (art. 33 RGPD) y comunicable a las personas afectadas si el riesgo es alto (art. 34). El proveedor **no** habrá incumplido nada: la configuración es responsabilidad del cliente. Este es el ejemplo que mejor explica por qué el reparto de responsabilidades debe estar escrito **en el pliego**, no supuesto.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Si el portal del caso de referencia guarda la documentación aportada por la ciudadanía en un almacén de objetos y esa política de acceso se deja en «lectura pública», el resultado es una **brecha de datos personales** notificable a la Agencia Española de Protección de Datos en **72 horas** (art. 33 RGPD) y comunicable a las personas afectadas si el riesgo es alto (art. 34). El proveedor **no** habrá incumplido nada: la configuración es responsabilidad del cliente. Este es el ejemplo que mejor explica por qué el reparto de responsabilidades debe estar escrito **en el pliego**, no supuesto.
 
 ### 4.2. Nubes privadas
 
@@ -700,13 +700,13 @@ De ahí salen cuatro modalidades que conviene distinguir:
 | **Gestionada** (*managed*) | Propia o de un tercero | **Operada por un tercero** | Se externaliza la operación conservando la exclusividad de uso |
 | **Privada virtual** (*VPC*) | Nube **pública** | Del proveedor | Segmento **lógicamente aislado** dentro de una nube pública; **no es una nube privada del NIST**, aunque el marketing lo sugiera |
 
-> **[DATO CLAVE EXAMEN]** Una **nube privada virtual** dentro de una nube pública **no convierte esa nube en privada**: el hardware sigue siendo compartido y el modelo de despliegue sigue siendo **público**. La palabra clave del NIST para «privada» es **«uso exclusivo de una sola organización»**, y eso se refiere al **uso de la infraestructura**, no al aislamiento lógico de la red [NIST145].
+> **[DATO CLAVE]** Una **nube privada virtual** dentro de una nube pública **no convierte esa nube en privada**: el hardware sigue siendo compartido y el modelo de despliegue sigue siendo **público**. La palabra clave del NIST para «privada» es **«uso exclusivo de una sola organización»**, y eso se refiere al **uso de la infraestructura**, no al aislamiento lógico de la red [NIST145].
 
 Las **ventajas** de la nube privada son el control físico y jurídico sobre la ubicación de los datos, el ajuste fino al cumplimiento normativo, la previsibilidad del coste y la posibilidad de atender requisitos de latencia o de integración con sistemas heredados difíciles de mover. Sus **inconvenientes** son la **inversión inicial**, la **elasticidad limitada por la capacidad instalada** —la nube privada solo es elástica hasta donde llega su hardware— y la necesidad de un equipo capaz de operar la plataforma.
 
 Tecnológicamente, una nube privada se construye sobre un hipervisor más una capa de gestión que aporte autoservicio, catálogo, cuotas y medición; el ejemplo de código abierto de referencia es **OpenStack** [OPENSTACK], y existen equivalentes comerciales de los fabricantes de virtualización.
 
-> **[DATO CLAVE EXAMEN]** El criterio para saber si un centro de datos virtualizado **es** una nube privada: comprobar si tiene **portal de autoservicio, catálogo, aprovisionamiento automático, elasticidad y medición del consumo por unidad**. Si el usuario tiene que abrir un tique y esperar a que alguien cree la máquina a mano, **es virtualización, no nube** [NIST145].
+> **[DATO CLAVE]** El criterio para saber si un centro de datos virtualizado **es** una nube privada: comprobar si tiene **portal de autoservicio, catálogo, aprovisionamiento automático, elasticidad y medición del consumo por unidad**. Si el usuario tiene que abrir un tique y esperar a que alguien cree la máquina a mano, **es virtualización, no nube** [NIST145].
 
 ### 4.3. Nubes híbridas
 
@@ -727,12 +727,12 @@ Los **patrones híbridos** habituales, que son la respuesta esperada en un supue
 
 Para que cualquiera de estos patrones funcione hacen falta cuatro condiciones técnicas: **conectividad** de baja latencia y ancho de banda suficiente (VPN de sitio a sitio o enlace dedicado); **identidad federada**, de modo que las mismas cuentas y roles valgan en ambos lados; **red y direccionamiento coherentes**, sin solapamientos; y **observabilidad unificada**, porque un incidente que atraviesa dos nubes es indiagnosticable con dos consolas separadas.
 
-Conviene precisar dos conceptos que la norma **ISO/IEC 19941** separa con cuidado y que se preguntan como pareja [ISO19941]:
+Conviene precisar dos conceptos que la norma **ISO/IEC 19941** separa con cuidado y que conviene estudiar como pareja [ISO19941]:
 
 - **Interoperabilidad**: capacidad de dos sistemas de **intercambiar información y usarla**. Se descompone en interoperabilidad de **transporte**, **sintáctica** (formatos), **semántica** (significado), de **comportamiento** (mismo efecto) y de **políticas** (compatibilidad de reglas de seguridad y cumplimiento).
 - **Portabilidad**: capacidad de **mover** algo de un entorno a otro. Se distingue la portabilidad **de datos** (llevarse la información en un formato utilizable) de la portabilidad **de aplicación** (que el programa se ejecute en el destino sin reescribirlo).
 
-> **[DATO CLAVE EXAMEN]** **Interoperabilidad ≠ portabilidad**. Interoperar es **hablarse** estando cada uno en su sitio; portar es **mudarse**. Un sistema puede ser perfectamente interoperable y absolutamente imposible de portar, que es justamente la situación que produce la dependencia del proveedor [ISO19941].
+> **[DATO CLAVE]** **Interoperabilidad ≠ portabilidad**. Interoperar es **hablarse** estando cada uno en su sitio; portar es **mudarse**. Un sistema puede ser perfectamente interoperable y absolutamente imposible de portar, que es justamente la situación que produce la dependencia del proveedor [ISO19941].
 
 Las palancas técnicas de portabilidad, por orden de eficacia demostrada: **contenedores conformes con la OCI** [OCI], **orquestación con Kubernetes** como capa común [K8S], **infraestructura como código** con herramientas que soporten varios proveedores [TERRAFORM], **formatos de datos abiertos** y **preferencia por servicios basados en tecnologías estándar** frente a servicios propietarios equivalentes. La palanca jurídica es el **Reglamento de Datos**, que se trata en el §5.1.
 
@@ -746,11 +746,11 @@ La **nube comunitaria** es infraestructura aprovisionada para el uso exclusivo d
 
 Es el modelo **naturalmente adecuado al sector público**, y no es una figura teórica: comparte la lógica de los **servicios compartidos** de la Administración. Sus ventajas son el **reparto de costes** entre entidades que no podrían asumirlos por separado, la **homogeneidad** de cumplimiento —todas están sujetas al mismo marco— y el **efecto de cohesión territorial**, al permitir que entidades locales pequeñas alcancen un nivel de digitalización que no lograrían solas [ESTRATEGIA-CLOUD]. Sus dificultades son de **gobernanza**: hay que decidir quién manda, cómo se reparten los costes, cómo se priorizan las peticiones y qué ocurre cuando dos miembros quieren cosas incompatibles.
 
-> **[EJEMPLO AYTO MADRID]** Los servicios comunes que la Administración General del Estado pone a disposición de las entidades locales —registro electrónico común, plataforma de intermediación de datos, identificación y firma, notificaciones— funcionan en la práctica como una **nube comunitaria del sector público**: infraestructura de uso exclusivo de un conjunto de organizaciones con requisitos y marco normativo comunes. Que un Ayuntamiento consuma esos servicios en lugar de construirlos es la aplicación directa del principio de **reutilización** del art. 157 de la Ley 40/2015 [L40-2015].
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Los servicios comunes que la Administración General del Estado pone a disposición de las entidades locales —registro electrónico común, plataforma de intermediación de datos, identificación y firma, notificaciones— funcionan en la práctica como una **nube comunitaria del sector público**: infraestructura de uso exclusivo de un conjunto de organizaciones con requisitos y marco normativo comunes. Que un Ayuntamiento consuma esos servicios en lugar de construirlos es la aplicación directa del principio de **reutilización** del art. 157 de la Ley 40/2015 [L40-2015].
 
 La **estrategia multicloud** consiste en usar **servicios de varios proveedores de nube**, normalmente varias nubes públicas. No es un modelo de despliegue del NIST, sino una **decisión de aprovisionamiento**.
 
-> **[DATO CLAVE EXAMEN]** **Multicloud no es lo mismo que híbrida.** *Híbrida* = combinación de **modelos de despliegue distintos** (típicamente privada + pública) unidos por portabilidad. *Multicloud* = **varios proveedores del mismo tipo**, habitualmente varias nubes públicas. Ambas cosas pueden darse a la vez: una entidad con nube privada propia y servicios en dos proveedores públicos es **híbrida y multicloud** simultáneamente.
+> **[DATO CLAVE]** **Multicloud no es lo mismo que híbrida.** *Híbrida* = combinación de **modelos de despliegue distintos** (típicamente privada + pública) unidos por portabilidad. *Multicloud* = **varios proveedores del mismo tipo**, habitualmente varias nubes públicas. Ambas cosas pueden darse a la vez: una entidad con nube privada propia y servicios en dos proveedores públicos es **híbrida y multicloud** simultáneamente.
 
 Las **motivaciones** del multicloud son cuatro: reducir la **dependencia** de un proveedor y mejorar la posición negociadora; aprovechar el **mejor servicio de cada uno**; cumplir requisitos de **resiliencia** que exigen no depender de un único operador; y responder a **exigencias regulatorias** o de soberanía. Sus **costes** son igualmente concretos: multiplicar el conocimiento necesario en el equipo, gestionar identidades y seguridad en varias consolas, pagar tráfico entre nubes y renunciar en buena medida a los servicios diferenciales de cada proveedor si se busca el **mínimo común denominador** para poder moverse.
 
@@ -771,7 +771,7 @@ El **Esquema Nacional de Seguridad**, regulado por el **Real Decreto 311/2022, d
 
 **1. El ámbito alcanza al proveedor privado.** El **artículo 2.3** establece que el real decreto se aplica también a los sistemas de información de las **entidades del sector privado** cuando, de acuerdo con la normativa aplicable y **en virtud de una relación contractual**, presten servicios o provean soluciones a las entidades del sector público para el ejercicio por estas de sus competencias y potestades administrativas; incluida la obligación de contar con la **política de seguridad** del artículo 12.
 
-> **[DATO CLAVE EXAMEN]** El **art. 2.3 del RD 311/2022** es el precepto que hay que citar cuando un supuesto pregunte «¿puede el Ayuntamiento contratar a un proveedor de nube que no cumpla el ENS?». La respuesta es **no**: el ENS **se extiende contractualmente** al proveedor privado, y los pliegos deben exigirlo y **acreditarlo**, no darlo por supuesto [ENS].
+> **[DATO CLAVE]** El **art. 2.3 del RD 311/2022** es el precepto que hay que citar cuando un supuesto pregunte «¿puede el Ayuntamiento contratar a un proveedor de nube que no cumpla el ENS?». La respuesta es **no**: el ENS **se extiende contractualmente** al proveedor privado, y los pliegos deben exigirlo y **acreditarlo**, no darlo por supuesto [ENS].
 
 **2. Categorización del sistema.** El **artículo 40** establece las **categorías de seguridad** —**BÁSICA, MEDIA y ALTA**—, que se determinan valorando el impacto de un incidente sobre las **cinco dimensiones de seguridad** del Anexo I: **disponibilidad, integridad, confidencialidad, autenticidad y trazabilidad**, cada una en tres niveles (bajo, medio, alto). La categoría del sistema es la que corresponde a la **dimensión más exigente**. Esta valoración es el **primer paso** de cualquier proyecto de nube: determina qué medidas del Anexo II son exigibles y, como se verá, condiciona incluso dónde pueden estar los datos.
 
@@ -785,41 +785,41 @@ El **Esquema Nacional de Seguridad**, regulado por el **Real Decreto 311/2022, d
 | `op.ext.4` | **Interconexión de sistemas**: control de los enlaces con sistemas ajenos |
 | `op.nub.1` | **Protección de los servicios en la nube**: exigencias específicas cuando el servicio se presta en la nube |
 
-> **[DATO CLAVE EXAMEN]** El grupo **`op.nub`** («servicios en la nube») es una **novedad del RD 311/2022** respecto del ENS anterior, igual que lo son `op.ext.3` (cadena de suministro) y `op.ext.4` (interconexión de sistemas). Que el ENS haya tenido que crear un grupo propio para la nube es, en sí mismo, un dato de examen: refleja que el uso de servicios en la nube dejó de ser excepcional [ENS].
+> **[DATO CLAVE]** El grupo **`op.nub`** («servicios en la nube») es una **novedad del RD 311/2022** respecto del ENS anterior, igual que lo son `op.ext.3` (cadena de suministro) y `op.ext.4` (interconexión de sistemas). Que el ENS haya tenido que crear un grupo propio para la nube es, en sí mismo, un dato significativo: refleja que el uso de servicios en la nube dejó de ser excepcional [ENS].
 
 **4. Auditoría y conformidad.** El **artículo 31** exige una **auditoría regular ordinaria al menos cada dos años**, además de auditorías extraordinarias cuando se produzcan modificaciones sustanciales. El **artículo 38** regula los **procedimientos de determinación de la conformidad**: los sistemas de categoría **BÁSICA** solo requieren **autoevaluación** para declarar la conformidad, mientras que los de categoría **MEDIA** y **ALTA** requieren **auditoría de certificación** por una entidad acreditada. Existe además una previsión específicamente pensada para el mundo cloud: el **artículo 30.4** contempla condiciones específicas de evaluación y auditoría para las implementaciones locales de productos, sistemas o servicios **originariamente prestados en la nube o en forma remota**.
 
-> **[DATO CLAVE EXAMEN]** El binomio que hay que memorizar: **BÁSICA → autoevaluación y declaración de conformidad; MEDIA y ALTA → auditoría y certificación** por entidad acreditada, con **periodicidad de al menos dos años** (arts. 31 y 38 del RD 311/2022) [ENS].
+> **[DATO CLAVE]** El binomio que hay que memorizar: **BÁSICA → autoevaluación y declaración de conformidad; MEDIA y ALTA → auditoría y certificación** por entidad acreditada, con **periodicidad de al menos dos años** (arts. 31 y 38 del RD 311/2022) [ENS].
 
 **5. Las guías del CCN.** La guía **CCN-STIC 823, «Utilización de servicios en la nube»**, es el documento de cabecera: identifica las medidas y requisitos que debe cumplir el proveedor y **cómo se reparten las responsabilidades entre cliente y proveedor según el modelo de servicio** —cuestión decisiva, porque en SaaS el cliente apenas puede implantar medidas técnicas y debe apoyarse en la conformidad acreditada del proveedor— [CCN823]. Se complementa con la **CCN-STIC 105**, que publica el **Catálogo de Productos y Servicios de Seguridad TIC (CPSTIC)**, donde figuran los productos **aprobados** y los productos y servicios **cualificados** para su uso en sistemas sujetos al ENS, incluidos servicios en la nube [CCN105]; y con las guías **803** (valoración de sistemas), **804** (implantación) y **809** (declaración y certificación de conformidad) [CCN800].
 
 Junto al ENS operan otras normas de seguridad aplicables al contexto cloud: la **Directiva NIS2** (Directiva (UE) 2022/2555), que incluye expresamente a los **proveedores de servicios de computación en nube** entre las entidades sujetas y cuya transposición al ordenamiento español seguía en tramitación al redactar este tema [NIS2]; y el **Reglamento (UE) 2019/881** (*Cybersecurity Act*), que crea el marco europeo de certificación de la ciberseguridad y da cobertura al futuro esquema **EUCS** para servicios en la nube [CSA-EU].
 
-> **[REFERENCIA CRUZADA]** Los **principios básicos del Esquema Nacional de Seguridad y del Esquema Nacional de Interoperabilidad** son el objeto completo del **Tema 39**, y los **conceptos de seguridad de los sistemas de información**, las amenazas, las técnicas criptográficas y la firma digital, el del **Tema 32**. Aquí el ENS se trata **solo** en lo que condiciona la contratación y el uso de servicios en la nube.
+> **[RELACIÓN CON OTROS TEMAS]** Los **principios básicos del Esquema Nacional de Seguridad y del Esquema Nacional de Interoperabilidad** son el objeto completo del **Tema 39**, y los **conceptos de seguridad de los sistemas de información**, las amenazas, las técnicas criptográficas y la firma digital, el del **Tema 32**. Aquí el ENS se trata **solo** en lo que condiciona la contratación y el uso de servicios en la nube.
 
 #### 5.1.2. Protección de datos de carácter personal y garantía de soberanía
 
-Cuando el servicio en la nube trata **datos personales**, se superpone el **RGPD** con estas consecuencias, todas ellas de examen:
+Cuando el servicio en la nube trata **datos personales**, se superpone el **RGPD** con estas consecuencias:
 
 **1. El proveedor es encargado del tratamiento (art. 28 RGPD).** La Administración sigue siendo **responsable del tratamiento** y el proveedor actúa **por cuenta de ella y siguiendo sus instrucciones**. El artículo 28 exige un **contrato o acto jurídico por escrito** que fije objeto, duración, naturaleza y fin del tratamiento, tipo de datos y categorías de interesados, y que imponga al encargado, entre otras: tratar los datos **solo siguiendo instrucciones documentadas**; garantizar la **confidencialidad** del personal; aplicar las medidas de seguridad del artículo 32; **no subcontratar** sin autorización del responsable; asistir al responsable en la atención de derechos y en las brechas; y, al finalizar, **devolver o suprimir** los datos a elección del responsable, incluidas las copias [RGPD].
 
-> **[DATO CLAVE EXAMEN]** Las **subencargas** son el punto ciego habitual de los contratos de nube: un proveedor de SaaS se apoya casi siempre en un proveedor de infraestructura, que a su vez usa terceros. El art. 28.2 y 28.4 exige **autorización** del responsable y que el subencargado quede sujeto a **las mismas obligaciones**. Un pliego correcto exige la **lista de subencargados**, el derecho a **oponerse** a nuevas incorporaciones y un **preaviso** [RGPD].
+> **[DATO CLAVE]** Las **subencargas** son el punto ciego habitual de los contratos de nube: un proveedor de SaaS se apoya casi siempre en un proveedor de infraestructura, que a su vez usa terceros. El art. 28.2 y 28.4 exige **autorización** del responsable y que el subencargado quede sujeto a **las mismas obligaciones**. Un pliego correcto exige la **lista de subencargados**, el derecho a **oponerse** a nuevas incorporaciones y un **preaviso** [RGPD].
 
 **2. Evaluación de impacto (art. 35 RGPD).** El paso a la nube de un tratamiento a gran escala, o de categorías especiales de datos, suele exigir una **evaluación de impacto relativa a la protección de datos** previa, con consulta al **delegado de protección de datos**.
 
 **3. Transferencias internacionales (arts. 44-50 RGPD).** Si los datos van a tratarse fuera del Espacio Económico Europeo —o si personal del proveedor establecido fuera puede acceder a ellos, lo que **también es una transferencia**— hace falta una base del capítulo V: **decisión de adecuación**, **cláusulas contractuales tipo**, **normas corporativas vinculantes** o una excepción del artículo 49. Tras la sentencia **Schrems II** (STJUE C-311/18, de 16 de julio de 2020), que anuló el *Privacy Shield*, no basta con firmar cláusulas: hay que **evaluar el marco jurídico del país de destino** y adoptar **medidas complementarias** si la protección no es equivalente [SCHREMSII]. Desde el **10 de julio de 2023** existe una **decisión de adecuación** para el **Marco de Privacidad de Datos UE-EE. UU.** aplicable a las entidades estadounidenses **certificadas** en él [DPF].
 
-> **[DATO CLAVE EXAMEN]** Tres precisiones que se preguntan. **Primera**: el **acceso remoto** desde un tercer país por personal de soporte **es una transferencia internacional**, aunque los servidores estén en la Unión. **Segunda**: la **decisión de adecuación** UE-EE. UU. de 2023 solo ampara a las entidades **certificadas** en el Marco, no a cualquier empresa estadounidense. **Tercera**: el **cifrado con claves gestionadas exclusivamente por la Administración** es la medida complementaria más eficaz, porque un acceso al dato cifrado sin clave no revela información [SCHREMSII] [DPF].
+> **[DATO CLAVE]** Tres precisiones. **Primera**: el **acceso remoto** desde un tercer país por personal de soporte **es una transferencia internacional**, aunque los servidores estén en la Unión. **Segunda**: la **decisión de adecuación** UE-EE. UU. de 2023 solo ampara a las entidades **certificadas** en el Marco, no a cualquier empresa estadounidense. **Tercera**: el **cifrado con claves gestionadas exclusivamente por la Administración** es la medida complementaria más eficaz, porque un acceso al dato cifrado sin clave no revela información [SCHREMSII] [DPF].
 
 **4. Datos no personales.** El **Reglamento (UE) 2018/1807** consagra la **libre circulación de datos no personales** dentro de la Unión y prohíbe con carácter general los requisitos de **localización** de datos, salvo por motivos justificados de seguridad pública. Es la norma que hay que citar cuando un supuesto plantea si se puede exigir que los datos «estén en España»: la respuesta genérica es que **dentro de la UE no cabe exigir localización nacional** de datos no personales, salvo justificación de seguridad pública [R2018-1807].
 
 **5. Cambio de proveedor y portabilidad: el Reglamento de Datos.** El **Reglamento (UE) 2023/2854** (*Data Act*) dedica su **capítulo VI (arts. 23 a 31)** al **cambio entre servicios de tratamiento de datos**. Impone obligaciones de eliminación de obstáculos precontractuales, comerciales, técnicos y contractuales al cambio; exige que el contrato recoja por escrito los derechos del cliente y las obligaciones del proveedor en el proceso de cambio; y, de manera especialmente relevante, su **artículo 29** establece la **retirada progresiva de las tarifas de cambio** (*switching charges*): en el periodo transitorio los proveedores solo pueden repercutir costes reducidos directamente vinculados al cambio, y **a partir del 12 de enero de 2027 no podrán imponer ninguna tarifa de cambio** [DATAACT].
 
-> **[DATO CLAVE EXAMEN]** La fecha **12 de enero de 2027** y el concepto de **tarifas de cambio** del art. 29 del Reglamento (UE) 2023/2854 son datos memorizables y muy preguntables: es la norma que ataca directamente la **dependencia del proveedor** convirtiendo en derecho lo que hasta ahora era una barrera económica —el coste de sacar los datos— [DATAACT].
+> **[DATO CLAVE]** La fecha **12 de enero de 2027** y el concepto de **tarifas de cambio** del art. 29 del Reglamento (UE) 2023/2854 son datos memorizables: es la norma que ataca directamente la **dependencia del proveedor** convirtiendo en derecho lo que hasta ahora era una barrera económica —el coste de sacar los datos— [DATAACT].
 
 **6. Soberanía del dato.** Más allá de la protección de datos personales, la preocupación por la **soberanía** responde a que un proveedor sujeto a la legislación de un tercer país puede verse obligado por ella a entregar datos, con independencia de dónde estén almacenados. La **Estrategia de servicios en la nube híbrida para las Administraciones Públicas** lo formula con criterios explícitos: que **los datos sensibles de la Administración no se transfieran fuera de la Unión Europea**; que **los datos manejados por sistemas de categoría ALTA del ENS solo puedan ser manejados por empresas a las que se aplique de manera exclusiva la jurisdicción comunitaria**; que las autoridades de terceros países **no puedan acceder de manera incontrolada**; y que la disponibilidad de las infraestructuras pueda preservarse **incluso ante tensiones geopolíticas** [ESTRATEGIA-CLOUD].
 
-> **[DATO CLAVE EXAMEN]** El criterio de la Estrategia española sobre **categoría ALTA del ENS** —solo empresas sujetas de manera **exclusiva** a jurisdicción comunitaria— es el enunciado más concreto y citable sobre soberanía del dato en la Administración española, y **combina** las dos normativas: la categorización viene del ENS y la exigencia de jurisdicción, de la política de soberanía [ESTRATEGIA-CLOUD] [ENS].
+> **[DATO CLAVE]** El criterio de la Estrategia española sobre **categoría ALTA del ENS** —solo empresas sujetas de manera **exclusiva** a jurisdicción comunitaria— es el enunciado más concreto y citable sobre soberanía del dato en la Administración española, y **combina** las dos normativas: la categorización viene del ENS y la exigencia de jurisdicción, de la política de soberanía [ESTRATEGIA-CLOUD] [ENS].
 
 En el plano europeo, la respuesta institucional a la soberanía se articula en iniciativas de federación de infraestructuras y de servicios de nube y en proyectos importantes de interés común europeo, orientados a construir capacidad propia y reglas comunes de portabilidad y transparencia [GAIAX].
 
@@ -841,7 +841,7 @@ Su estructura es **7 pilares y 19 iniciativas**, y es un contenido excelente par
 | 6 | **Evolución de sistemas hacia la nube híbrida** | Transformar los centros hacia soluciones en nube híbrida, consolidar la nube privada y fijar criterios de distribución de cargas (i12, i13, i14) |
 | 7 | **Nube segura** | Certificación ENS de las infraestructuras de nube, capacidades de ciberseguridad, evolución del Centro de Operaciones, Red Nacional de SOC y guías CCN-STIC por modelo de servicio (i15 a i19) |
 
-> **[DATO CLAVE EXAMEN]** El principio español **no es «cloud first» sin matices, sino «nube híbrida primero»** (*hybrid first*): priorizar el aprovisionamiento de servicios basados en la nube frente a las soluciones tradicionales, **en un modelo híbrido** que combina la nube privada de la Administración con proveedores externos. Y la cifra a retener: **7 pilares y 19 iniciativas** [ESTRATEGIA-CLOUD].
+> **[DATO CLAVE]** El principio español **no es «cloud first» sin matices, sino «nube híbrida primero»** (*hybrid first*): priorizar el aprovisionamiento de servicios basados en la nube frente a las soluciones tradicionales, **en un modelo híbrido** que combina la nube privada de la Administración con proveedores externos. Y la cifra a retener: **7 pilares y 19 iniciativas** [ESTRATEGIA-CLOUD].
 
 Los **desafíos** que la propia Estrategia identifica —y que son la mejor guía para redactar un supuesto— son seis: **autonomía tecnológica**, **soberanía del dato**, **redundancia y resiliencia**, **interoperabilidad**, **protección de datos** y **ciberseguridad** [ESTRATEGIA-CLOUD].
 
@@ -851,7 +851,7 @@ Este marco estratégico se apoya en una base normativa previa: la **Ley 40/2015*
 
 La pieza de infraestructura más citada es **NubeSARA**: la **solución de nube privada** de la Administración General del Estado, desplegada por la **Secretaría General de Administración Digital en 2015** sobre la red **SARA** —la red que interconecta a las Administraciones españolas y las conecta con las redes europeas—. Según la Estrategia, alberga de forma parcial la infraestructura de cómputo de **22 organismos y entidades** vinculados o dependientes de **11 ministerios**, y dispone de un **catálogo de servicios** con **coste conocido y acuerdos de nivel de servicio asociados**, con las actividades más relevantes de provisión **automatizadas**. El paso siguiente previsto es convertir ese catálogo en una **Tienda de Soluciones, Servicios y Aplicaciones**, a modo de *marketplace*, abierta a las distintas Administraciones Públicas e integrando proveedores externos [ESTRATEGIA-CLOUD].
 
-> **[DATO CLAVE EXAMEN]** **NubeSARA** = nube **privada** de la AGE, **desplegada en 2015** por la **SGAD**, con catálogo de servicios **IaaS y PaaS**, costes conocidos y **acuerdos de nivel de servicio**. Evoluciona hacia una **«tienda»** o *marketplace* de soluciones para todas las Administraciones. No confundir la **red SARA** (la red de interconexión) con **NubeSARA** (la nube desplegada sobre ella) [ESTRATEGIA-CLOUD].
+> **[DATO CLAVE]** **NubeSARA** = nube **privada** de la AGE, **desplegada en 2015** por la **SGAD**, con catálogo de servicios **IaaS y PaaS**, costes conocidos y **acuerdos de nivel de servicio**. Evoluciona hacia una **«tienda»** o *marketplace* de soluciones para todas las Administraciones. No confundir la **red SARA** (la red de interconexión) con **NubeSARA** (la nube desplegada sobre ella) [ESTRATEGIA-CLOUD].
 
 Junto a ella, la Administración española lleva años prestando **servicios comunes en modalidad de nube** que constituyen, de hecho, la aplicación práctica del modelo: soluciones de **registro** (ORVE/GEISER/SIR), la **Plataforma de Intermediación de Datos**, los servicios de **identificación y firma** y la **factura electrónica**, cuyo éxito la propia Estrategia atribuye precisamente al despliegue de una solución **en modalidad nube para todas las Administraciones Públicas** [ESTRATEGIA-CLOUD]. El efecto buscado es doble: **reutilización** —evitar que cada entidad construya lo mismo— y **cohesión territorial**, permitiendo que las entidades locales con menos recursos alcancen un nivel de digitalización equivalente.
 
@@ -864,8 +864,8 @@ La **decisión de qué se lleva a la nube y cómo** no debería ser una decisió
 5. **Elegir el modelo de despliegue** con la política de **nube híbrida primero**, comprobando antes si el servicio ya existe en el **catálogo público** —principio de reutilización— antes de contratarlo fuera.
 6. **Diseñar la salida antes de la entrada**: formatos exportables, plan de reversión probado, estimación del tráfico de salida y cláusulas de cambio de proveedor conforme al Reglamento de Datos.
 
-> **[DATO CLAVE EXAMEN]** El orden importa: **primero se categoriza y se analiza el dato, después se elige la tecnología**. Un supuesto que empiece eligiendo proveedor y termine preguntándose si los datos podían salir de la Unión está mal resuelto aunque la arquitectura sea impecable [ENS] [ESTRATEGIA-CLOUD].
+> **[DATO CLAVE]** El orden importa: **primero se categoriza y se analiza el dato, después se elige la tecnología**. Un supuesto que empiece eligiendo proveedor y termine preguntándose si los datos podían salir de la Unión está mal resuelto aunque la arquitectura sea impecable [ENS] [ESTRATEGIA-CLOUD].
 
-> **[EJEMPLO AYTO MADRID]** Aplicando el esquema al caso de referencia del tema: el **padrón** es un sistema con datos personales de toda la población, alta exigencia de integridad y de confidencialidad y numerosas integraciones internas → nube **privada** municipal, sin discusión. El **portal de cita previa**, que solo recoge y muestra datos de la persona solicitante, tiene un pico brutal y previsible y ninguna integración compleja del lado de la presentación → capa pública elástica con **PaaS**, cola de amortiguación hacia dentro y validación contra el padrón limitada y cacheada. Las **notificaciones** → función bajo demanda. Los **entornos de pruebas** → nube pública con datos anonimizados. Y antes de contratar nada: comprobar si el registro, la identificación y la notificación **ya están disponibles** como servicios comunes de la Administración, porque construir de nuevo lo que ya existe es la forma más cara de resolver el problema [L40-2015] [ESTRATEGIA-CLOUD].
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Aplicando el esquema al caso de referencia del tema: el **padrón** es un sistema con datos personales de toda la población, alta exigencia de integridad y de confidencialidad y numerosas integraciones internas → nube **privada** municipal, sin discusión. El **portal de cita previa**, que solo recoge y muestra datos de la persona solicitante, tiene un pico brutal y previsible y ninguna integración compleja del lado de la presentación → capa pública elástica con **PaaS**, cola de amortiguación hacia dentro y validación contra el padrón limitada y cacheada. Las **notificaciones** → función bajo demanda. Los **entornos de pruebas** → nube pública con datos anonimizados. Y antes de contratar nada: comprobar si el registro, la identificación y la notificación **ya están disponibles** como servicios comunes de la Administración, porque construir de nuevo lo que ya existe es la forma más cara de resolver el problema [L40-2015] [ESTRATEGIA-CLOUD].
 
-> **[REFERENCIA CRUZADA]** El tema conecta hacia atrás con el **Tema 22** (cliente/servidor, multicapa y servicios web), el **Tema 26** (almacenamiento y copias), el **Tema 28** (virtualización) y el **Tema 30** (administración de redes de área local); y hacia adelante con el **Tema 32** (seguridad de los sistemas de información y criptografía), el **Tema 34** (TCP/IP), el **Tema 35** (HTTP, HTTPS y TLS), el **Tema 36** (seguridad perimetral, acceso remoto seguro y VPN) y el **Tema 39** (ENS y ENI). La **accesibilidad y la confidencialidad en el puesto de usuario** corresponden al **Tema 25**.
+> **[RELACIÓN CON OTROS TEMAS]** El tema conecta hacia atrás con el **Tema 22** (cliente/servidor, multicapa y servicios web), el **Tema 26** (almacenamiento y copias), el **Tema 28** (virtualización) y el **Tema 30** (administración de redes de área local); y hacia adelante con el **Tema 32** (seguridad de los sistemas de información y criptografía), el **Tema 34** (TCP/IP), el **Tema 35** (HTTP, HTTPS y TLS), el **Tema 36** (seguridad perimetral, acceso remoto seguro y VPN) y el **Tema 39** (ENS y ENI). La **accesibilidad y la confidencialidad en el puesto de usuario** corresponden al **Tema 25**.

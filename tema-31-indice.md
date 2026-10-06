@@ -81,8 +81,8 @@
 | Las 5 características esenciales | **Autoservicio bajo demanda · acceso amplio a la red · agrupación de recursos (*resource pooling*) · elasticidad rápida · servicio medido**. Si falta una, **no es nube** |
 | Sexta característica (ISO/IEC 17788) | La norma **ISO/IEC 17788 = ITU-T Y.3500** añade la **multitenencia** (*multi-tenancy*) a las cinco del NIST: **seis características clave** |
 | Actores (NIST SP 500-292) | **Cinco**: consumidor, proveedor, **intermediario** (*broker*), **portador** (*carrier*) y **auditor** de la nube |
-| IaaS / PaaS / SaaS | Regla del examen: **cuanto más arriba, menos gestionas y menos controlas**. IaaS entrega **máquinas, discos y red**; PaaS entrega el **entorno de ejecución**; SaaS entrega la **aplicación terminada** |
-| Frontera IaaS-PaaS | En **IaaS** el cliente administra el **sistema operativo**; en **PaaS**, no. Ese es el corte exacto, y es la pregunta clásica |
+| IaaS / PaaS / SaaS | Regla clave: **cuanto más arriba, menos gestionas y menos controlas**. IaaS entrega **máquinas, discos y red**; PaaS entrega el **entorno de ejecución**; SaaS entrega la **aplicación terminada** |
+| Frontera IaaS-PaaS | En **IaaS** el cliente administra el **sistema operativo**; en **PaaS**, no. Ese es el corte exacto |
 | Escalabilidad / elasticidad | **Escalabilidad** = capacidad de crecer. **Elasticidad** = crecer **y decrecer automáticamente** siguiendo la demanda, en minutos. Vertical (*scale up*) frente a horizontal (*scale out*) |
 | Multitenencia | Una **misma instancia** de software sirve a **varios inquilinos** con sus datos **aislados**. Modelos: **silo** (todo separado), **puente** (mezcla) y **agrupado** (*pooled*, todo compartido) |
 | XaaS | FaaS (funciones, *serverless*), CaaS (contenedores), DBaaS, DaaS (escritorio **y** datos, según contexto), NaaS, SECaaS, BPaaS. **No son categorías del NIST**: el NIST solo reconoce tres |

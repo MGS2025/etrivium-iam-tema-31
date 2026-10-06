@@ -4,6 +4,20 @@
 
 ---
 
+## v1.3 — 2026-10-02 — Normas vigentes y correcciones comunes de la revisión
+
+**Motivo**: revisión de la serie del 01-10-2026 (decisiones de Joan y María): normas caducadas con el patrón de dos filas en Fuentes y correcciones comunes (referencias al cliente y al origen del material, promesas sobre el examen, AP → AAPP; en este tema no hay «AP» administrativo).
+
+### Cambios
+
+- **RFC 8446 → RFC 9846** (TLS 1.3, julio de 2026): fila vigente y fila histórica en Fuentes; las citas del contenido apuntan al RFC 9846.
+- Fuera las promesas sobre el examen («se pregunta», «muy preguntado», «materia de examen», «alta probabilidad de aparecer en el test oficial»…): unas 23 frases en contenido, índice, diagramas, fuentes y validación, conservando el dato. Las frases en condicional («una opción que afirme… es falsa») se mantienen.
+- Pestaña Inicio: la caja «Cómo estudiar» (escrita en el builder) sin promesas sobre el examen.
+- Fuera las referencias internas al origen del material (rutas `Test_Prompting/…`, «esqueleto oficial», notas de secuencia de la serie) en fuentes.
+- Títulos de las cajas homogeneizados con los temas 1-10 (revisión jurídica): «Dato clave», «Ejemplo de aplicación en el Ayto» y «Relación con otros temas»; las cajas «Ejercicio resuelto» no cambian.
+
+---
+
 ## v1.2 — 2026-09-06 — Marcado del apartado complementario
 
 **Estado**: pendiente de validación por el IAM.

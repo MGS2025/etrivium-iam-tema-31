@@ -26,7 +26,8 @@
 | `[RMODP]` | ISO/IEC 10746 = ITU-T X.901-X.904. *Reference Model of Open Distributed Processing (RM-ODP)*. Los cinco puntos de vista y las **ocho transparencias de distribución**. |
 | `[RFC7231]` | IETF. *RFC 7231 y RFC 9110: HTTP Semantics*. Base del estilo arquitectónico REST y de las API de gestión de los proveedores de nube. |
 | `[RFC6455]` | IETF. *RFC 6455: The WebSocket Protocol*. Canal bidireccional persistente sobre HTTP, usado en interfaces distribuidas en tiempo real. |
-| `[RFC8446]` | IETF. *RFC 8446: The Transport Layer Security (TLS) Protocol Version 1.3* (2018). Cifrado del canal en tránsito hacia y dentro de la nube. |
+| `[RFC9846]` | IETF. *RFC 9846: The Transport Layer Security (TLS) Protocol Version 1.3* (julio de 2026). Obsoleta los RFC 5077, 5246, 6961, 7627, 8422 y 8446: es la especificación vigente de TLS 1.3 y sustituye a la de 2018. Cifrado del canal en tránsito hacia y dentro de la nube. |
+| `[RFC8446]` | IETF. *RFC 8446: The Transport Layer Security (TLS) Protocol Version 1.3* (agosto de 2018). Obsoletado por el RFC 9846. Se conserva la referencia porque es la que recogen los temarios al uso. |
 | `[RFC7519]` | IETF. *RFC 7519: JSON Web Token (JWT)* y *RFC 6749: The OAuth 2.0 Authorization Framework*. Autenticación y autorización delegadas entre servicios distribuidos. |
 | `[RFC5280]` | IETF. *RFC 5280: Internet X.509 Public Key Infrastructure Certificate and CRL Profile*. Certificados de servidor y de cliente en las comunicaciones entre nubes. |
 | `[RFC4122]` | IETF. *RFC 4122 (y RFC 9562): Universally Unique IDentifier (UUID)*. Identificación sin coordinación central, patrón habitual en sistemas distribuidos. |

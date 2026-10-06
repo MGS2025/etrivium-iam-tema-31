@@ -35,10 +35,10 @@ def inline(t):
 
 
 CALLOUTS = {
-    "DATO CLAVE EXAMEN": "dato",
+    "DATO CLAVE": "dato",
     "EJERCICIO RESUELTO": "ejercicio",
-    "EJEMPLO AYTO MADRID": "ayto",
-    "REFERENCIA CRUZADA": "ref",
+    "EJEMPLO DE APLICACIÓN EN EL AYTO": "ayto",
+    "RELACIÓN CON OTROS TEMAS": "ref",
 }
 
 
@@ -296,7 +296,7 @@ def build():
 <tr><td>Casos prácticos Ayto Madrid</td><td>3 casos (diseño distribuido y modelo de servicio de un portal de ayudas; reparto híbrido y soberanía del dato; contratación, cumplimiento y salida del proveedor)</td></tr>
 <tr><td>Fuentes Tier 1</td><td>46 referencias canónicas (NIST, ISO/IEC, ITU-T, IETF, OASIS, ENS, CCN-STIC, RGPD, Reglamento de Datos, Estrategia cloud de las AAPP)</td></tr>
 </tbody></table>
-<div class="callout ref"><span class="kicker">Cómo estudiar</span>La nube <strong>no es una tecnología</strong>: es un modelo económico y de consumo montado sobre tecnologías anteriores. Por eso el enunciado oficial empieza por los <strong>paradigmas de computación distribuida</strong> (§1) y solo después llega a los servicios en cloud. Quien estudie únicamente las siglas aprobará las preguntas fáciles y fallará las buenas. Memorice las tres cifras del NIST —<strong>5 características esenciales, 3 modelos de servicio, 4 modelos de despliegue</strong>—, los dos diagramas de memorización directa (<strong>D10</strong>, la pila de responsabilidad, y <strong>D14</strong>, los cuatro modelos de despliegue) y los preceptos de §5. Lea el <strong>Contenido</strong>, navegue con el <strong>Índice</strong>, autoevalúese en el <strong>Test</strong> y practique con los <strong>Casos</strong>. Las cajas naranjas (DATO CLAVE) marcan lo más memorizable.</div>"""
+<div class="callout ref"><span class="kicker">Cómo estudiar</span>La nube <strong>no es una tecnología</strong>: es un modelo económico y de consumo montado sobre tecnologías anteriores. Por eso el enunciado oficial empieza por los <strong>paradigmas de computación distribuida</strong> (§1) y solo después llega a los servicios en cloud. Memorice las tres cifras del NIST —<strong>5 características esenciales, 3 modelos de servicio, 4 modelos de despliegue</strong>—, los dos diagramas de memorización directa (<strong>D10</strong>, la pila de responsabilidad, y <strong>D14</strong>, los cuatro modelos de despliegue) y los preceptos de §5. Lea el <strong>Contenido</strong>, navegue con el <strong>Índice</strong>, autoevalúese en el <strong>Test</strong> y practique con los <strong>Casos</strong>. Las cajas naranjas (DATO CLAVE) marcan lo más memorizable.</div>"""
 
     nav = (
         '<nav class="tabs">'
